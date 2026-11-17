@@ -1,0 +1,16 @@
+[project]
+name = "sdlc-lab"
+version = "0.1.0"
+description = "AI in the software lifecycle: specs (C1), maintainability of shipped agent code (C3), AI-written tests under mutation (C4)"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "anthropic==2.8.0",
+    "openai==3.50.0",
+    "pylint==4.1.3",
+    "python-dotenv==1.2.4",
+    "radon==6.0.1",
+    "ruff==0.17.3",
+]
+
+[tool.uv]
+package = false
