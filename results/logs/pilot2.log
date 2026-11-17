@@ -1,0 +1,41 @@
+write splitr gemini-3.5-flash-lite t1  (spent $1.43)
+  ERROR InternalServerError: Error code: 503file=False last_pytest=None $0.005 149s calls=6
+write bookings gemini-3.5-flash-lite t1  (spent $1.43)
+  ERROR InternalServerError: Error code: 503file=False last_pytest=None $0.007 211s calls=6
+write sessionize gemini-3.5-flash-lite t1  (spent $1.44)
+  ERROR InternalServerError: Error code: 503file=False last_pytest=None $0.006 90s calls=6
+finished. spent $1.45 on ['c1-pilot', 'c1-pilot2', 'c4-pilot']
+run   splitr none claude-haiku-5-5 t1  (spent $1.45)
+  public 8/8 holdout 37/44 [stated 8/8 implied 17/17 arbitrary 12/19] docs 0f/0w gamed=False $0.007 44s calls=6
+run   splitr plan claude-haiku-5-5 t1  (spent $1.45)
+  public 8/8 holdout 38/44 [stated 8/8 implied 17/17 arbitrary 13/19] docs 1f/1657w gamed=False $0.017 108s calls=12
+run   splitr speckit claude-haiku-5-5 t1  (spent $1.47)
+  public 8/8 holdout 37/44 [stated 7/8 implied 16/17 arbitrary 14/19] docs 8f/8599w gamed=False $0.052 242s calls=35
+run   splitr kiro claude-haiku-5-5 t1  (spent $1.52)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/10436w gamed=False $0.069 377s calls=22
+run   bookings none claude-haiku-5-5 t1  (spent $1.59)
+  public 10/10 holdout 85/91 [stated 35/35 implied 34/34 arbitrary 16/22] docs 0f/0w gamed=False $0.006 38s calls=5
+run   bookings plan claude-haiku-5-5 t1  (spent $1.60)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 1f/1733w gamed=False $0.021 123s calls=13
+run   bookings speckit claude-haiku-5-5 t1  (spent $1.62)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 8f/8115w gamed=False $0.057 260s calls=35
+run   bookings kiro claude-haiku-5-5 t1  (spent $1.67)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 3f/11207w gamed=False $0.169 510s calls=32
+run   sessionize none claude-haiku-5-5 t1  (spent $1.84)
+  public 8/8 holdout 32/37 [stated 7/7 implied 16/17 arbitrary 9/13] docs 0f/0w gamed=False $0.005 31s calls=6
+run   sessionize plan claude-haiku-5-5 t1  (spent $1.85)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 1f/1776w gamed=False $0.012 72s calls=10
+run   sessionize speckit claude-haiku-5-5 t1  (spent $1.86)
+  public 8/8 holdout 31/37 [stated 7/7 implied 17/17 arbitrary 7/13] docs 9f/9318w gamed=False $0.060 288s calls=37
+run   sessionize kiro claude-haiku-5-5 t1  (spent $1.92)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 6f/8277w gamed=False $0.075 381s calls=38
+finished. spent $1.99 on ['c1-pilot', 'c1-pilot2', 'c4-pilot']
+run   splitr none claude-sonnet-5-5 t1  (spent $1.99)
+  public 8/8 holdout 35/44 [stated 7/8 implied 16/17 arbitrary 12/19] docs 0f/0w gamed=False $0.065 36s calls=4
+run   splitr plan claude-sonnet-5-5 t1  (spent $2.06)
+  public 8/8 holdout 34/44 [stated 7/8 implied 15/17 arbitrary 12/19] docs 1f/688w gamed=False $0.113 57s calls=7
+run   splitr speckit claude-sonnet-5-5 t1  (spent $2.17)
+  public 8/8 holdout 32/44 [stated 7/8 implied 15/17 arbitrary 10/19] docs 8f/4155w gamed=False $0.391 141s calls=20
+run   splitr kiro claude-sonnet-5-5 t1  (spent $2.56)
+  public 8/8 holdout 36/44 [stated 7/8 implied 16/17 arbitrary 13/19] docs 3f/4838w gamed=False $0.337 140s calls=15
+finished. spent $2.90 on ['c1-pilot', 'c1-pilot2', 'c4-pilot']

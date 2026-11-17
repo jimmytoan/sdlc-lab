@@ -18,11 +18,14 @@ LABEL = {"sloc": "SLOC", "ruff_per_kloc": "ruff/KLOC", "pylint_per_kloc": "pylin
          "cc_max": "CC max", "cc_over_10": "fns CC>10", "mi": "MI", "dup_ratio": "dup %"}
 
 
+SUPERSEDED = {"c1:c1-pilot"}   # first C1 pilot: prompt bug let agents skip the spec phases (PLAN.md); kept on disk, not analysed
+
+
 def load_index():
     rows = []
     for idx in sorted(paths.CORPUS.glob("*/index.jsonl")):
         rows += [json.loads(x) for x in open(idx) if x.strip()]
-    return rows
+    return [r for r in rows if r["source"] not in SUPERSEDED]
 
 
 def ranks(xs):

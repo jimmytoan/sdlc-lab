@@ -191,7 +191,15 @@ class OpenAICompatBackend:
         if tools:
             kwargs["tools"] = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
                                                                  "parameters": t["input_schema"]}} for t in tools]
-        resp = self.client.chat.completions.create(**kwargs)
+        from openai import InternalServerError
+        for attempt in range(6):        # Gemini answers 503 "overloaded" for minutes at a time; the SDK's own retries are too short
+            try:
+                resp = self.client.chat.completions.create(**kwargs)
+                break
+            except InternalServerError:
+                if attempt == 5:
+                    raise
+                time.sleep(60 * (attempt + 1))
         OpenAICompatBackend._last_call[self.model] = time.time()
         choice = resp.choices[0]
         blocks = []

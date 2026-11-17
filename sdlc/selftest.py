@@ -306,7 +306,13 @@ def test_c4_pipeline(tmp):
     r = c4.score_suite("splitr", "selftest-class", [pub, tf], "agent")
     check("c4: node ids of class-based and parametrized tests deselect correctly",
           r["invalid_tests"] == ["test_agent.py::TestX::test_p[2]"] and r["mutation"]["valid"], (r["invalid_tests"], r["mutation"]))
+    c4.REALFAULTS = tmp / "c4" / "rf.jsonl"
     hold = df.config.HOLDOUT / "splitr" / "v1"
+    rf = c4.score_realfaults("splitr", "selftest-rf", [hold / "helpers.py", hold / "test_holdout.py"])
+    rp = c4.score_realfaults("splitr", "selftest-rfp", [pub, df.config.SPECS / "splitr" / "public" / "test_public.py"])
+    check("c4 real faults: the held-out suite catches every faulty build and no correct one; the public examples catch none",
+          rf["original_ok"] and rf["faulty"] > 10 and rf["faulty_caught"] == rf["faulty"] and rf["false_alarms"] == 0
+          and rp["faulty_caught"] == 0 and rp["false_alarms"] == 0, (rf["faulty_caught"], rf["faulty"], rf["false_alarms"], rp["faulty_caught"]))
     ids = mutate.sample("splitr", 40)
     rh = mutate.score(mutate.run_suite_on_mutants("splitr", [hold / "helpers.py", hold / "test_holdout.py"], ids), ids)
     rg = c4.score_suite("splitr", "selftest-good", [pub, Path(rec["suite_path"])], "agent")

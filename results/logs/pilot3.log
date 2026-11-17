@@ -1,0 +1,30 @@
+write splitr gemini-3.5-flash-lite t1  (spent $2.90)
+  file=True last_pytest=25 passed in 0.75s $0.101 225s calls=18
+write bookings gemini-3.5-flash-lite t1  (spent $3.00)
+  file=True last_pytest=29 passed in 1.79s $0.044 1586s calls=10
+write sessionize gemini-3.5-flash-lite t1  (spent $3.05)
+  file=True last_pytest=21 passed in 0.40s $0.092 596s calls=17
+finished. spent $3.14 on ['c1-pilot', 'c1-pilot2', 'c4-pilot']
+20261118-003737-splitr-tests-gemini-35-flash-lite-t1: 17/17 valid tests, mutation 314/439
+20261118-004122-bookings-tests-gemini-35-flash-lite-t1: 19/19 valid tests, mutation 652/916
+20261118-010748-sessionize-tests-gemini-35-flash-lite-t1: 13/13 valid tests, mutation 489/618
+public-splitr: faulty caught 0/22, false alarms 0/11
+holdout-splitr: faulty caught 22/22, false alarms 0/11
+public-bookings: faulty caught 0/21, false alarms 0/11
+holdout-bookings: faulty caught 21/21, false alarms 0/11
+public-sessionize: faulty caught 0/24, false alarms 0/11
+holdout-sessionize: faulty caught 24/24, false alarms 0/11
+20261117-211929-splitr-tests-haiku-t1: faulty caught 21/22, false alarms 0/11
+20261117-213026-bookings-tests-haiku-t1: faulty caught 21/21, false alarms 0/11
+20261117-214312-sessionize-tests-haiku-t1: faulty caught 24/24, false alarms 1/11
+20261117-215035-splitr-tests-gpt-61-terra-t1: faulty caught 22/22, false alarms 11/11
+20261117-215210-bookings-tests-gpt-61-terra-t1: faulty caught 21/21, false alarms 2/11
+20261117-215342-sessionize-tests-gpt-61-terra-t1: faulty caught 24/24, false alarms 6/11
+20261118-003737-splitr-tests-gemini-35-flash-lite-t1: faulty caught 22/22, false alarms 3/11
+20261118-004122-bookings-tests-gemini-35-flash-lite-t1: faulty caught 21/21, false alarms 0/11
+20261118-010748-sessionize-tests-gemini-35-flash-lite-t1: faulty caught 22/24, false alarms 0/11
+analysed 212 codebases
+wrote results/c3-report.md
+wrote /Users/jimmynguyen/git/me/sdlc-lab/results/c1-c1-pilot2-report.md
+wrote /Users/jimmynguyen/git/me/sdlc-lab/results/c1-c1-pilot-report.md
+wrote /Users/jimmynguyen/git/me/sdlc-lab/results/c4-c4-pilot-report.md

@@ -190,6 +190,58 @@ def cmd_score(a):
         print(f"{r['run_id']}: {rec['valid_tests']}/{rec['tests']} valid tests, mutation {m.get('killed')}/{m.get('total')}")
 
 
+REALFAULTS = OUT / "realfaults.jsonl"
+
+
+def realfault_set(spec):
+    """Real codebases from the dark factory main run, round 1: brief-ticket builds that fail at least one held-out
+    scenario (faulty) and full-spec builds that pass all of them (correct as far as the held-out suite knows)."""
+    rows = [json.loads(x) for x in open(paths.CORPUS / "df" / "index.jsonl")]
+    rows = [r for r in rows if r["source"] == "darkfactory" and r["round"] == 1 and r["spec"] == spec]
+    faulty = [r for r in rows if r["spec_level"] == "brief" and r["holdout_rate"] < 1.0]
+    correct = [r for r in rows if r["spec_level"] == "full" and r["holdout_rate"] == 1.0]
+    return faulty, correct
+
+
+def score_realfaults(spec, suite_id, files, deselect=()):
+    """Runs a suite against every real codebase (as if each were a mutant). Faulty caught = suite fails on it;
+    false alarm = suite fails on a correct one."""
+    faulty, correct = realfault_set(spec)
+    d = paths.RUNTIME / "realfaults" / spec
+    if not d.exists():
+        d.mkdir(parents=True)
+        for r in faulty + correct:
+            shutil.copy(paths.ROOT / r["file"], d / f"{r['id']}.py")
+        for p in [d, *d.iterdir()]:
+            p.chmod(0o777 if p.is_dir() else 0o666)
+    ids = [r["id"] for r in faulty + correct]
+    res = mutate.run_suite_on_mutants(spec, files, ids, deselect=deselect, mutant_dir=d)
+    fail = {i for i in ids if res[i]["status"] != "survived"}
+    rec = {"suite_id": suite_id, "spec": spec, "original_ok": res["original"]["status"] == "survived",
+           "faulty_caught": len(fail & {r["id"] for r in faulty}), "faulty": len(faulty),
+           "false_alarms": len(fail & {r["id"] for r in correct}), "correct": len(correct),
+           "status": {i: res[i]["status"] for i in ids}}
+    with open(REALFAULTS, "a") as f:
+        f.write(json.dumps(rec) + "\n")
+    return rec
+
+
+def cmd_realfaults(a):
+    done = {r["suite_id"] for r in load(REALFAULTS)}
+    for s in load(SCORES):
+        if s["suite_id"] in done or s["suite_id"].startswith("selftest") or (s["kind"] == "agent" and s.get("tag") != a.tag):
+            continue
+        if s["kind"] == "agent":
+            r = next((x for x in load(RUNS) if x["run_id"] == s["suite_id"]), None)
+            if not r or not r.get("suite_path"):
+                continue
+            files = [df.config.SPECS / s["spec"] / "public" / "helpers.py", paths.ROOT / r["suite_path"]]
+        else:
+            files = baseline_suites(s["spec"])[s["kind"]]
+        rec = score_realfaults(s["spec"], s["suite_id"], files, s["invalid_tests"])
+        print(f"{s['suite_id']}: faulty caught {rec['faulty_caught']}/{rec['faulty']}, false alarms {rec['false_alarms']}/{rec['correct']}")
+
+
 def cmd_write(a):
     tags = a.cap_tags.split(",") if a.cap_tags else [a.tag]
     budget = llm.Budget(a.cap, tags)
@@ -215,7 +267,7 @@ def cmd_write(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["write", "score", "report"])
+    ap.add_argument("cmd", choices=["write", "score", "realfaults", "report"])
     ap.add_argument("--tag", required=True)
     ap.add_argument("--specs", default=",".join(df.SPEC_NAMES))
     ap.add_argument("--models", default="haiku")
@@ -232,6 +284,8 @@ def main():
         cmd_write(a)
     elif a.cmd == "score":
         cmd_score(a)
+    elif a.cmd == "realfaults":
+        cmd_realfaults(a)
     else:
         from .report import c4_report
         c4_report(a.tag)

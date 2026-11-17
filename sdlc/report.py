@@ -141,6 +141,23 @@ def c4_report(tag):
         if ss:
             L.append(f"| {kind} suite | {len(ss)} | {med([s['valid_tests'] for s in ss]):.0f} | 0 | "
                      f"{100 * st.fmean(s['mutation']['score'] for s in ss):.1f}% | - |")
+    rf = {r["suite_id"]: r for r in load(paths.RESULTS / "c4" / "realfaults.jsonl")}
+    if rf:
+        L += ["", "## Real faults: the suites against the dark factory's shipped codebases", "",
+              "Faulty = brief-ticket builds that fail at least one held-out scenario; holdout-clean = full-spec builds that pass all "
+              "of them. A suite catches a faulty build if it fails on it. A failure on a holdout-clean build is either a false "
+              "alarm (the test pins behaviour the spec leaves open) or a real bug the held-out suite misses; these need reading "
+              "by hand before either word is used (pilot example: one is each). "
+              "The held-out suite defines 'faulty', so it catches all of them by construction and is shown only as a check; "
+              "the public examples pass on every build by construction.", "",
+              "| spec | suite | model | faulty caught | fails on holdout-clean builds |", "|---|---|---|---|---|"]
+        for sid, r in sorted(rf.items(), key=lambda kv: (kv[1]["spec"], kv[0])):
+            s_ = base.get(sid) or agent.get(sid)
+            if s_ is None:
+                continue
+            name = s_["kind"] if s_["kind"] != "agent" else f"`{sid}`"
+            L.append(f"| {r['spec']} | {name} | {s_.get('model', '-')} | {pct(r['faulty_caught'], r['faulty'])} | "
+                     f"{pct(r['false_alarms'], r['correct'])} |")
     tamper = [r for r in runs if r.get("helpers_modified") or r.get("product_modified")]
     L += ["", "## Tampering and errors", ""]
     L += [f"- `{r['run_id']}`: helpers modified={r.get('helpers_modified')} product modified={r.get('product_modified')} "
