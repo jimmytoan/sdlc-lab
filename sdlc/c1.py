@@ -50,6 +50,13 @@ SYSTEM_CODE = df.designs.FACTORY + "\n\n" + df.designs.RULES + "\n\n" + COMMON
 SYSTEM_DOCS = ("You are a software engineer working in a repository. The workspace root is the current directory. Python 3.13, "
                "standard library only, no network. Do only what the current instruction asks; later steps will follow it. "
                + COMMON)
+# /speckit.clarify in the speckit-clarify condition: the one step where someone answers. The unattended note above made the
+# live smoke run skip every question ("Because this run is unattended, I did not ask anything").
+SYSTEM_CLARIFY = ("You are a software engineer working in a repository. The workspace root is the current directory. Python 3.13, "
+                  "standard library only, no network. Do only what the current instruction asks; later steps will follow it. "
+                  "The product must be the single file {entry} in the workspace root; the customer's acceptance examples in "
+                  "tests/ are read-only. In this step the customer who owns the product is available: ask your clarification "
+                  "questions the way the instructions describe, one at a time, and wait for each answer.")
 KICKOFF = df.designs._coder_kickoff(SimpleNamespace(change=False))   # the dark factory loop design's own kickoff
 TECH = ("Python 3.13, standard library only, no third-party packages, no network. The product is the single file {entry} "
         "in the repository root; the customer's acceptance examples in tests/ run it from there "
@@ -141,7 +148,7 @@ def clarify_phase(ctx, spec):
     merged = {"turns": 0, "tool_calls": 0, "stopped_by": None, "last_pytest": None, "exchanges": 0}
     log = []
     for _ in range(MAX_CLARIFY_EXCHANGES + 1):
-        info = df.agent.agent_loop(ctx.backend, ctx.meter, "clarify", ctx.sandbox, ctx.system_docs, msgs, TOOLS, MAX_TURNS,
+        info = df.agent.agent_loop(ctx.backend, ctx.meter, "clarify", ctx.sandbox, SYSTEM_CLARIFY.format(entry=ctx.entry), msgs, TOOLS, MAX_TURNS,
                                    ctx.transcript, ctx.cost_cap)
         merged["turns"] += info["turns"]
         merged["tool_calls"] += info["tool_calls"]
