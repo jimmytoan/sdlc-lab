@@ -61,6 +61,10 @@ Spec docs: medians over runs of every non-code file the run created (SPEC.md and
 | `20261118-003232-splitr-speckit-sonnet-t1` | 8/8 | 32/44 | test_comments_and_blank_lines_ignored, test_multiple_bad_rows_in_order_one_reason_each, test_bad_participants[arbitrary:weight_fraction], test_bad_participants[arbitrary:same_person_twice], test_names_case_insensitive_first_spelling, test_sort_ignores_case, test_zero_balance_prints_unsigned, test_leftover_two_cents_alphabetical_ignoring_case, test_leftover_goes_to_largest_remainder_with_weights, test_leftover_remainder_tie_by_name, test_options_before_positionals, test_missing_header_column | 8 files, 4155 words | specify 4 done; plan 5 done; tasks 7 done; implement 4 done |
 | `20261118-003455-splitr-kiro-sonnet-t1` | 8/8 | 36/44 | test_comments_and_blank_lines_ignored, test_multiple_bad_rows_in_order_one_reason_each, test_bad_participants[arbitrary:same_person_twice], test_names_case_insensitive_first_spelling, test_sort_ignores_case, test_zero_balance_prints_unsigned, test_leftover_two_cents_alphabetical_ignoring_case, test_missing_header_column | 3 files, 4838 words | requirements 4 done; design 3 done; tasks 3 done; implement 5 done |
 
+## Protocol
+
+- every finished run left each phase's document and wrote no product code before its coding phase
+
 ## Gaming checks and added tests
 
 - none

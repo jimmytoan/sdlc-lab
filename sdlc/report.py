@@ -74,6 +74,15 @@ def c1_report(tag):
                  f"{', '.join(g['holdout']['failed']) or 'none'} | {r['spec_docs']['files']} files, {r['spec_docs']['words']} words | {ph} |")
     if err:
         L += ["", "## Errored runs", ""] + [f"- `{r['run_id']}`: {r['error'][:300]}" for r in err]
+    cl = [r for r in ok if r.get("clarify")]
+    if cl:
+        L += ["", "## Spec Kit clarify: questions answered by the owner model", "",
+              "| run | questions | owner said 'no preference' | Q/A lines recorded in spec.md |", "|---|---|---|---|"]
+        L += [f"| `{r['run_id']}` | {len(r['clarify']['exchanges'])} | {r['clarify']['no_preference']} | {r['clarify']['recorded_in_spec']} |" for r in cl]
+    nf = [r for r in ok if r.get("protocol") and not r["protocol"]["followed"]]
+    L += ["", "## Protocol", ""]
+    L += [f"- `{r['run_id']}`: missing={r['protocol']['missing']} product_before_code={r['protocol']['product_before_code']}" for r in nf] \
+        or ["- every finished run left each phase's document and wrote no product code before its coding phase"]
     gam = [r for r in ok if r["gaming"]["gamed"] or r["gaming"]["tests_added"]]
     L += ["", "## Gaming checks and added tests", ""]
     L += [f"- `{r['run_id']}`: gamed={r['gaming']['gamed']} modified={r['gaming']['tests_modified']} deleted={r['gaming']['tests_deleted']} "
@@ -81,6 +90,10 @@ def c1_report(tag):
     out = paths.RESULTS / f"c1-{tag}-report.md"
     out.write_text("\n".join(L) + "\n")
     print(f"wrote {out}")
+
+
+def label(s):
+    return s.get("model", "-") + (" (black-box)" if s.get("variant") == "blackbox" else "")
 
 
 def c4_report(tag):
@@ -107,16 +120,16 @@ def c4_report(tag):
               "| suite | model | tests (valid/total) | killed | score | score on killable | pytest time on reference | writer cost |",
               "|---|---|---|---|---|---|---|---|"]
         rows = [base.get(f"public-{spec}"), base.get(f"holdout-{spec}")] + sorted(
-            [s for s in agent.values() if s["spec"] == spec], key=lambda s: (s["model"], s["trial"]))
+            [s for s in agent.values() if s["spec"] == spec], key=lambda s: (label(s), s["trial"]))
         for s in rows:
             if not s:
                 continue
             m = s["mutation"]
             if not m.get("valid"):
-                L.append(f"| {s['suite_id']} | {s.get('model', '-')} | {s['valid_tests']}/{s['tests']} | invalid baseline | | | | |")
+                L.append(f"| {s['suite_id']} | {label(s)} | {s['valid_tests']}/{s['tests']} | invalid baseline | | | | |")
                 continue
             kk = sum(1 for k, v in (s.get("status") or {}).items() if v != "survived" and k in killable)
-            L.append(f"| {s['kind'] if s['kind'] != 'agent' else '`' + s['suite_id'] + '`'} | {s.get('model', '-')} | "
+            L.append(f"| {s['kind'] if s['kind'] != 'agent' else '`' + s['suite_id'] + '`'} | {label(s)} | "
                      f"{s['valid_tests']}/{s['tests']} | {m['killed']}/{m['total']} | {100 * m['score']:.1f}% | "
                      f"{100 * kk / len(killable):.1f}% | {s['pytest_s'] if s['pytest_s'] is not None else '-'}s | "
                      f"{'$%.3f' % s['cost_usd'] if 'cost_usd' in s else '-'} |")
@@ -132,7 +145,7 @@ def c4_report(tag):
           "|---|---|---|---|---|---|"]
     by = defaultdict(list)
     for s in agent.values():
-        by[s["model"]].append(s)
+        by[label(s)].append(s)
     for k, ss in sorted(by.items()):
         L.append(f"| {k} | {len(ss)} | {med([s['valid_tests'] for s in ss]):.0f} | {sum(len(s['invalid_tests']) for s in ss)} | "
                  f"{100 * st.fmean(s['mutation']['score'] for s in ss):.1f}% | ${st.fmean(s['cost_usd'] for s in ss):.3f} |")
@@ -156,9 +169,13 @@ def c4_report(tag):
             if s_ is None:
                 continue
             name = s_["kind"] if s_["kind"] != "agent" else f"`{sid}`"
-            L.append(f"| {r['spec']} | {name} | {s_.get('model', '-')} | {pct(r['faulty_caught'], r['faulty'])} | "
+            L.append(f"| {r['spec']} | {name} | {label(s_)} | {pct(r['faulty_caught'], r['faulty'])} | "
                      f"{pct(r['false_alarms'], r['correct'])} |")
     tamper = [r for r in runs if r.get("helpers_modified") or r.get("product_modified")]
+    peek = [r for r in runs if r.get("peeked")]
+    if any(r.get("variant") == "blackbox" for r in runs):
+        L += ["", "## Black-box writers: commands that look like decompiling the product", ""]
+        L += [f"- `{r['run_id']}`: {'; '.join(c[:120] for c in r['peeked'])}" for r in peek] or ["- none"]
     L += ["", "## Tampering and errors", ""]
     L += [f"- `{r['run_id']}`: helpers modified={r.get('helpers_modified')} product modified={r.get('product_modified')} "
           "(scoring uses pristine helpers and the pristine reference regardless)" for r in tamper]

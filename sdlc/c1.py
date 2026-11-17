@@ -4,6 +4,8 @@ Conditions (same model, same system prompt, same four tools, same sandbox; only 
   none     the coder gets the ticket and the examples and builds (the dark factory `loop` design)
   plan     an agent first writes a free-form plan.md (no template), then a fresh coder builds from it
   speckit  GitHub Spec Kit v1.2.6 commands in order: /speckit.specify, /speckit.plan, /speckit.tasks, /speckit.implement
+  speckit-clarify  as speckit, with /speckit.clarify after specify; its questions go one at a time to an owner model that
+           holds the full spec (the dark factory `ask` design's oracle, adapted to Spec Kit's one-question-at-a-time loop)
   kiro     Kiro-style spec: requirements.md (user stories, EARS criteria), design.md, tasks.md, then implement the tasks.
            Kiro itself cannot run headless on an arbitrary model, so this follows its documented document structure
            with prompts written for this lab (sdlc/c1.py KIRO_*).
@@ -15,6 +17,7 @@ The run is unattended: questions and approval gates get the default answer (stat
 import argparse
 import datetime as dt
 import json
+import re
 import shutil
 import time
 import traceback
@@ -28,6 +31,9 @@ RUNS = OUT / "runs.jsonl"
 RAW = paths.RESULTS / "raw" / "c1"
 CORPUS_C1 = paths.CORPUS / "c1"
 CONDITIONS = ["none", "plan", "speckit", "kiro"]
+ALL_CONDITIONS = CONDITIONS + ["speckit-clarify"]
+OWNER_MODEL = df.config.ORACLE_MODEL   # same owner as the dark factory ask design
+MAX_CLARIFY_EXCHANGES = 8               # Spec Kit asks at most 5 questions, plus room for disambiguation
 TOOLS = ["write_file", "read_file", "list_files", "run"]
 MAX_TURNS = 40
 RUN_CAP = {"claude-haiku-5-5": 0.80, "claude-sonnet-5-5": 4.00, "claude-opus-5-5": 8.00, "gpt-6.1-terra": 2.00,
@@ -89,9 +95,21 @@ done ("- [x]") in tasks.md. Run `python -m pytest tests -q` as you go. When ever
 with a short summary and no tool call."""
 
 
+OWNER = """You are the customer who owns this product. A developer is clarifying the specification with you, one question at a \
+time. Below is everything you know about what the product must do. Answer the question in one or two sentences, using only \
+this knowledge. Where the developer offers lettered options, answer with the letter that matches what you know, or with a \
+short answer if none does. Answer only what is asked and do not volunteer other rules. If your knowledge does not settle the \
+question, answer "No preference; use your recommendation." Reply with your answer and nothing else.
+
+===== what you know =====
+"""
+
+
 EXPECT = {  # documents each document phase must leave behind (glob patterns relative to the workspace)
     ("plan", "planner"): ["plan.md"],
     ("speckit", "specify"): ["specs/*/spec.md"], ("speckit", "plan"): ["specs/*/plan.md"], ("speckit", "tasks"): ["specs/*/tasks.md"],
+    ("speckit-clarify", "specify"): ["specs/*/spec.md"], ("speckit-clarify", "plan"): ["specs/*/plan.md"],
+    ("speckit-clarify", "tasks"): ["specs/*/tasks.md"],
     ("kiro", "requirements"): [".kiro/specs/*/requirements.md"], ("kiro", "design"): [".kiro/specs/*/design.md"],
     ("kiro", "tasks"): [".kiro/specs/*/tasks.md"],
 }
@@ -112,6 +130,38 @@ def phase(ctx, stage, message):
     return info
 
 
+QUESTION = re.compile(r"Question[^\n]*\?")
+
+
+def clarify_phase(ctx, spec):
+    """/speckit.clarify is interactive: the agent asks one question, waits for the answer, asks the next (at most 5), then
+    writes the answers into spec.md. Each question goes to the owner model, whose answer is the next user message."""
+    msgs = [{"role": "user", "content": speckit.render("clarify", "")}]
+    owner_msgs = []
+    merged = {"turns": 0, "tool_calls": 0, "stopped_by": None, "last_pytest": None, "exchanges": 0}
+    log = []
+    for _ in range(MAX_CLARIFY_EXCHANGES + 1):
+        info = df.agent.agent_loop(ctx.backend, ctx.meter, "clarify", ctx.sandbox, ctx.system_docs, msgs, TOOLS, MAX_TURNS,
+                                   ctx.transcript, ctx.cost_cap)
+        merged["turns"] += info["turns"]
+        merged["tool_calls"] += info["tool_calls"]
+        merged["stopped_by"] = info["stopped_by"]
+        text = info["final_text"]
+        if info["stopped_by"] != "done" or not QUESTION.search(text) or merged["exchanges"] >= MAX_CLARIFY_EXCHANGES:
+            break
+        owner_msgs.append({"role": "user", "content": f"The developer asks:\n\n{text}"})
+        o = df.agent.agent_loop(ctx.owner, ctx.meter, "owner", ctx.sandbox, OWNER + ctx.full_spec, owner_msgs, [], 1,
+                                ctx.transcript, ctx.cost_cap)
+        answer = o["final_text"].strip() or "No preference; use your recommendation."
+        log.append({"question": text, "answer": answer})
+        msgs.append({"role": "user", "content": answer})
+        merged["exchanges"] += 1
+    ctx.stages["clarify"] = merged
+    rc, out = ctx.sandbox.exec("grep -c '^- Q:' specs/*/spec.md 2>/dev/null | tail -1")
+    ctx.clarify = {"exchanges": log, "no_preference": sum("no preference" in x["answer"].lower() for x in log),
+                   "recorded_in_spec": int(out.strip().split(":")[-1] or 0) if rc == 0 and out.strip() else 0}
+
+
 def run_condition(ctx, condition, spec):
     entry = df.ENTRY[spec]
     if condition == "none":
@@ -122,6 +172,13 @@ def run_condition(ctx, condition, spec):
     elif condition == "speckit":
         brief = (df.config.SPECS / spec / "BRIEF.md").read_text()
         phase(ctx, "specify", speckit.render("specify", brief + "\n\nThe customer's acceptance examples are in tests/."))
+        phase(ctx, "plan", speckit.render("plan", TECH.format(entry=entry)))
+        phase(ctx, "tasks", speckit.render("tasks", ""))
+        phase(ctx, "implement", speckit.render("implement", ""))
+    elif condition == "speckit-clarify":
+        brief = (df.config.SPECS / spec / "BRIEF.md").read_text()
+        phase(ctx, "specify", speckit.render("specify", brief + "\n\nThe customer's acceptance examples are in tests/."))
+        clarify_phase(ctx, spec)
         phase(ctx, "plan", speckit.render("plan", TECH.format(entry=entry)))
         phase(ctx, "tasks", speckit.render("tasks", ""))
         phase(ctx, "implement", speckit.render("implement", ""))
@@ -164,7 +221,7 @@ def prepare(run_id, spec, condition):
     shutil.copy(df.config.SPECS / spec / "BRIEF.md", root / "SPEC.md")
     for f in (df.config.SPECS / spec / "public").glob("*.py"):
         shutil.copy(f, root / "tests" / f.name)
-    if condition == "speckit":
+    if condition.startswith("speckit"):
         speckit.install(root)
     for p in [root, *root.rglob("*")]:
         p.chmod(0o777 if p.is_dir() else (0o777 if p.suffix == ".sh" else 0o666))
@@ -193,7 +250,7 @@ def load_runs():
     return [json.loads(x) for x in open(RUNS) if x.strip()] if RUNS.exists() else []
 
 
-def one_run(tag, spec, condition, model, trial, budget, backend=None, run_cap=None):
+def one_run(tag, spec, condition, model, trial, budget, backend=None, run_cap=None, owner=None):
     short = model.split("-")[1] if model.startswith("claude") else model.replace(".", "")
     run_id = f"{dt.datetime.now():%Y%m%d-%H%M%S}-{spec}-{condition}-{short}-t{trial}"
     raw = RAW / run_id
@@ -211,7 +268,9 @@ def one_run(tag, spec, condition, model, trial, budget, backend=None, run_cap=No
                                   transcript=transcript, cost_cap=run_cap or RUN_CAP.get(model, 1.0), stages={},
                                   system_code=SYSTEM_CODE.format(entry=df.ENTRY[spec]),
                                   system_docs=SYSTEM_DOCS.format(entry=df.ENTRY[spec]), condition=condition,
-                                  entry=df.ENTRY[spec], protocol={"missing": [], "product_before_code": False})
+                                  entry=df.ENTRY[spec], protocol={"missing": [], "product_before_code": False},
+                                  owner=owner or (llm.backend_for(OWNER_MODEL, budget) if condition == "speckit-clarify" else None),
+                                  full_spec=(df.config.SPECS / spec / "SPEC.md").read_text(), clarify=None)
             run_condition(ctx, condition, spec)
     except Exception as e:  # API failure, cap reached, Docker failure: keep the record, the cell stays open for --resume
         rec["error"] = f"{type(e).__name__}: {e}"
@@ -220,6 +279,8 @@ def one_run(tag, spec, condition, model, trial, budget, backend=None, run_cap=No
     rec["phases"] = {k: {x: v[x] for x in ("turns", "tool_calls", "stopped_by", "last_pytest")}
                      for k, v in (ctx.stages if ctx else {}).items()}
     if ctx:
+        if ctx.clarify is not None:
+            rec["clarify"] = ctx.clarify
         rec["protocol"] = {**ctx.protocol, "followed": not ctx.protocol["missing"] and not ctx.protocol["product_before_code"]}
     rec["usage"] = {"model_calls": meter.calls, "cost_usd": round(meter.cost, 6), "stages": meter.stages}
     shipped = raw / "workspace"
@@ -276,7 +337,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", required=True)
     ap.add_argument("--specs", default=",".join(df.SPEC_NAMES))
-    ap.add_argument("--conditions", default=",".join(CONDITIONS))
+    ap.add_argument("--conditions", default=",".join(CONDITIONS), help="any of " + ",".join(ALL_CONDITIONS))
     ap.add_argument("--models", default="haiku")
     ap.add_argument("--trials", type=int, default=1)
     ap.add_argument("--first-trial", type=int, default=1)
