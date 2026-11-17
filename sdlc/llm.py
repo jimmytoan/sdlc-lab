@@ -148,8 +148,9 @@ def to_openai_messages(system, messages):
         blocks = [_block(b) for b in c]
         if m["role"] == "assistant":
             text = "\n".join(b["text"] for b in blocks if b["type"] == "text")
-            calls = [{"id": b["id"], "type": "function",
-                      "function": {"name": b["name"], "arguments": json.dumps(b["input"])}} for b in blocks if b["type"] == "tool_use"]
+            calls = [{"id": b["id"], "type": "function", "function": {"name": b["name"], "arguments": json.dumps(b["input"])},
+                      **({"extra_content": b["extra_content"]} if b.get("extra_content") else {})}
+                     for b in blocks if b["type"] == "tool_use"]
             msg = {"role": "assistant", "content": text or None}
             if calls:
                 msg["tool_calls"] = calls
@@ -165,7 +166,7 @@ def to_openai_messages(system, messages):
 
 
 class OpenAICompatBackend:
-    """OpenAI chat completions; Gemini through its OpenAI-compatible endpoint. Gemini calls are spaced 4.5 s apart."""
+    """Chat completions; used for Gemini through its OpenAI-compatible endpoint. Calls are spaced 4.5 s apart."""
     _last_call = {}
 
     def __init__(self, model, budget=None):
@@ -201,7 +202,11 @@ class OpenAICompatBackend:
                 args = json.loads(tc.function.arguments or "{}")
             except json.JSONDecodeError:
                 args = {"_unparseable_arguments": tc.function.arguments}
-            blocks.append({"type": "tool_use", "id": tc.id, "name": tc.function.name, "input": args})
+            block = {"type": "tool_use", "id": tc.id, "name": tc.function.name, "input": args}
+            extra = (tc.model_extra or {}).get("extra_content")
+            if extra:              # Gemini thought signature: must be echoed back with the call
+                block["extra_content"] = extra
+            blocks.append(block)
         u = resp.usage
         cached = getattr(getattr(u, "prompt_tokens_details", None), "cached_tokens", 0) or 0
         usage = {"input_tokens": (u.prompt_tokens or 0) - cached, "output_tokens": u.completion_tokens or 0,
@@ -213,10 +218,79 @@ class OpenAICompatBackend:
         return blocks, stop, usage, blocks
 
 
+def responses_items(msg):
+    """One Anthropic-style user message to Responses API input items."""
+    c = msg["content"]
+    if isinstance(c, str):
+        return [{"role": "user", "content": c}]
+    items = []
+    for b in map(_block, c):
+        if b["type"] == "tool_result":
+            out = b["content"] if isinstance(b["content"], str) else json.dumps(b["content"])
+            items.append({"type": "function_call_output", "call_id": b["tool_use_id"], "output": out})
+        elif b["type"] == "text":
+            items.append({"role": "user", "content": b["text"]})
+    return items
+
+
+class ResponsesBackend:
+    """OpenAI Responses API (the lab key does not allow chat completions). Conversation state lives on the server via
+    previous_response_id; the agent loop's history is append-only, so each call sends only the newest user message.
+    A history of length 1 starts a new conversation (each factory phase starts fresh)."""
+
+    def __init__(self, model, budget=None):
+        from openai import OpenAI
+        self.model, self.budget = model, budget
+        self.client = OpenAI(max_retries=6, timeout=600)
+        self.prev, self.seen = None, 0
+
+    def complete(self, system, messages, tools):
+        if self.budget:
+            self.budget.check()
+        if len(messages) == 1:
+            self.prev, self.seen = None, 0
+        elif len(messages) != self.seen + 2 or messages[-2]["role"] != "assistant":
+            raise RuntimeError("ResponsesBackend expects an append-only history: one assistant turn, then one user turn")
+        kwargs = dict(model=self.model, instructions=system, input=responses_items(messages[-1]),
+                      reasoning={"effort": EFFORT}, max_output_tokens=MAX_TOKENS)
+        if self.prev:
+            kwargs["previous_response_id"] = self.prev
+        if tools:
+            kwargs["tools"] = [{"type": "function", "name": t["name"], "description": t["description"],
+                                "parameters": t["input_schema"]} for t in tools]
+        resp = self.client.responses.create(**kwargs)
+        self.prev, self.seen = resp.id, len(messages)
+        blocks = []
+        for item in resp.output:
+            if item.type == "message":
+                text = "".join(getattr(c, "text", "") for c in item.content)
+                if text:
+                    blocks.append({"type": "text", "text": text})
+            elif item.type == "function_call":
+                try:
+                    args = json.loads(item.arguments or "{}")
+                except json.JSONDecodeError:
+                    args = {"_unparseable_arguments": item.arguments}
+                blocks.append({"type": "tool_use", "id": item.call_id, "name": item.name, "input": args})
+        u = resp.usage
+        cached = getattr(getattr(u, "input_tokens_details", None), "cached_tokens", 0) or 0
+        usage = {"input_tokens": (u.input_tokens or 0) - cached, "output_tokens": u.output_tokens or 0,
+                 "cache_read_input_tokens": cached, "cache_creation_input_tokens": 0}
+        if any(b["type"] == "tool_use" for b in blocks):
+            stop = "tool_use"
+        elif resp.status == "incomplete":
+            stop = "max_tokens"
+        else:
+            stop = "end_turn"
+        return blocks, stop, usage, blocks
+
+
 def backend_for(model, budget=None):
     if os.environ.get("SDLC_OFFLINE"):
         raise RuntimeError("offline mode: no model calls allowed")
     model = ALIASES.get(model, model)
     if model.startswith("claude"):
         return AnthropicBackend(model, budget)
+    if model.startswith("gpt"):
+        return ResponsesBackend(model, budget)
     return OpenAICompatBackend(model, budget)

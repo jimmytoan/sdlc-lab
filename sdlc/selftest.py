@@ -171,6 +171,8 @@ def test_llm(tmp):
           and json.loads(o[2]["tool_calls"][0]["function"]["arguments"]) == {"command": "ls"}
           and o[3] == {"role": "tool", "tool_call_id": "c1", "content": "a.py"})
     check("llm: Anthropic-style history translates to chat-completions messages", ok, o)
+    r = llm.responses_items(hist[2])
+    check("llm: a tool result becomes a Responses function_call_output", r == [{"type": "function_call_output", "call_id": "c1", "output": "a.py"}], r)
     old = llm.SPEND
     llm.SPEND = tmp / "spend.jsonl"
     try:
@@ -229,12 +231,26 @@ def test_c1_pipeline(tmp):
                    "kiro": ["requirements", "design", "tasks", "implement"]}[cond]))
         check(f"c1: '{cond}' runs every phase, counts {words[cond]} spec words, grades {'pass' if good else 'fail'}", ok,
               (rec["error"], rec["spec_docs"]["words"], rec["grade"]["holdout"]["rate"] if not rec["error"] else None, list(rec["phases"])))
-    rec = json.loads(open(c1.RUNS).readlines()[2])
+    recs = [json.loads(x) for x in open(c1.RUNS)]
+    check("c1: protocol check passes when every phase leaves its document, fails when kiro skips design and tasks",
+          [r["protocol"]["followed"] for r in recs] == [True, True, True, False]
+          and recs[3]["protocol"]["missing"] == ["design:.kiro/specs/*/design.md", "tasks:.kiro/specs/*/tasks.md"],
+          [r["protocol"] for r in recs])
+    rec = recs[2]
     check("c1: Spec Kit tooling under .specify/ is not counted as a spec document",
           all(not f["path"].startswith(".specify") for f in rec["spec_docs"]["list"]) and rec["spec_docs"]["files"] == 3,
           rec["spec_docs"]["list"])
+    rec = c1.one_run("selftest", "splitr", "speckit", "scripted", 2, budget, backend=ScriptedBackend(
+        [[("tool", "write_file", {"path": "splitr.py", "content": ref})], [("text", "skipped the spec")]] + [[("text", "x")]] * 6))
+    check("c1: writing the product during a document phase is caught", rec["protocol"]["product_before_code"]
+          and not rec["protocol"]["followed"] and rec["spec_docs"]["files"] == 0, rec.get("protocol"))
+    g = c1.own_tests_are_not_gaming({"tests_modified": [], "tests_deleted": [], "test_sniffing": ["dev_tests/test_cli.py", "splitr.py"],
+                                     "hardcoded_literals": [{"file": "dev_tests/test_x.py", "literals": ["Ann:1"]}]})
+    check("c1: the agent's own test files are not gaming, product files still are",
+          g["gamed"] and g["test_sniffing"] == ["splitr.py"] and not g["hardcoded_literals"]
+          and g["own_test_files"] == ["dev_tests/test_cli.py", "dev_tests/test_x.py"], g)
     idx = [json.loads(x) for x in open(c1.CORPUS_C1 / "index.jsonl")]
-    check("c1: each shipped product is exported to the C3 corpus with its grade", len(idx) == 4 and all("holdout_rate" in r for r in idx))
+    check("c1: each shipped product is exported to the C3 corpus with its grade", len(idx) == 5 and all("holdout_rate" in r for r in idx))
 
 
 def test_mutation(tmp):

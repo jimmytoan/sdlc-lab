@@ -1,0 +1,65 @@
+write splitr claude-haiku-5-5 t1  (spent $0.00)
+  file=True last_pytest=183 passed in 3.45s $0.045 656s calls=16
+write bookings claude-haiku-5-5 t1  (spent $0.05)
+  file=True last_pytest=2 failed, 266 passed in 15.59s $0.032 767s calls=14
+write sessionize claude-haiku-5-5 t1  (spent $0.08)
+  file=True last_pytest=210 passed in 4.23s $0.030 443s calls=11
+write splitr gpt-6.1-terra t1  (spent $0.11)
+  file=True last_pytest=100 passed in 1.77s $0.066 95s calls=5
+write bookings gpt-6.1-terra t1  (spent $0.17)
+  file=True last_pytest=22 passed in 1.38s $0.079 92s calls=6
+write sessionize gpt-6.1-terra t1  (spent $0.25)
+  file=True last_pytest=18 passed in 0.41s $0.061 78s calls=5
+write splitr gemini-3.5-flash-lite t1  (spent $0.31)
+  ERROR BadRequestError: Error code: 400file=False last_pytest=None $0.000 14s calls=1
+write bookings gemini-3.5-flash-lite t1  (spent $0.31)
+  ERROR BadRequestError: Error code: 400file=False last_pytest=None $0.000 14s calls=1
+write sessionize gemini-3.5-flash-lite t1  (spent $0.31)
+  ERROR BadRequestError: Error code: 400file=False last_pytest=None $0.000 15s calls=1
+finished. spent $0.31 on ['c1-pilot', 'c4-pilot']
+run   splitr none claude-haiku-5-5 t1  (spent $0.31)
+  public 8/8 holdout 38/44 [stated 8/8 implied 17/17 arbitrary 13/19] docs 0f/0w gamed=False $0.006 39s calls=5
+run   splitr plan claude-haiku-5-5 t1  (spent $0.32)
+  public 8/8 holdout 37/44 [stated 8/8 implied 17/17 arbitrary 12/19] docs 1f/1392w gamed=False $0.016 102s calls=11
+run   splitr speckit claude-haiku-5-5 t1  (spent $0.34)
+  public 8/8 holdout 35/44 [stated 8/8 implied 17/17 arbitrary 10/19] docs 9f/4295w gamed=False $0.037 179s calls=33
+run   splitr kiro claude-haiku-5-5 t1  (spent $0.37)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/9067w gamed=True $0.072 342s calls=42
+run   bookings none claude-haiku-5-5 t1  (spent $0.44)
+  public 10/10 holdout 83/91 [stated 34/35 implied 34/34 arbitrary 15/22] docs 0f/0w gamed=False $0.007 38s calls=4
+run   bookings plan claude-haiku-5-5 t1  (spent $0.45)
+  public 10/10 holdout 87/91 [stated 35/35 implied 34/34 arbitrary 18/22] docs 1f/1088w gamed=False $0.038 208s calls=21
+run   bookings speckit claude-haiku-5-5 t1  (spent $0.49)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 7f/5929w gamed=False $0.046 218s calls=30
+run   bookings kiro claude-haiku-5-5 t1  (spent $0.53)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 3f/9014w gamed=True $0.072 373s calls=33
+run   sessionize none claude-haiku-5-5 t1  (spent $0.61)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.005 27s calls=5
+run   sessionize plan claude-haiku-5-5 t1  (spent $0.61)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 1f/1329w gamed=False $0.011 63s calls=9
+run   sessionize speckit claude-haiku-5-5 t1  (spent $0.62)
+  public 8/8 holdout 33/37 [stated 7/7 implied 17/17 arbitrary 9/13] docs 0f/0w gamed=False $0.021 102s calls=23
+run   sessionize kiro claude-haiku-5-5 t1  (spent $0.64)
+  public 8/8 holdout 32/37 [stated 7/7 implied 16/17 arbitrary 9/13] docs 3f/9062w gamed=False $0.052 266s calls=21
+finished. spent $0.69 on ['c1-pilot', 'c4-pilot']
+run   splitr none claude-sonnet-5-5 t1  (spent $0.69)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 0f/0w gamed=False $0.055 29s calls=3
+run   splitr plan claude-sonnet-5-5 t1  (spent $0.75)
+  public 8/8 holdout 34/44 [stated 7/8 implied 15/17 arbitrary 12/19] docs 1f/865w gamed=False $0.099 48s calls=9
+run   splitr speckit claude-sonnet-5-5 t1  (spent $0.85)
+  public 8/8 holdout 33/44 [stated 8/8 implied 15/17 arbitrary 10/19] docs 0f/0w gamed=False $0.209 70s calls=16
+run   splitr kiro claude-sonnet-5-5 t1  (spent $1.06)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 3f/5556w gamed=False $0.369 144s calls=17
+finished. spent $1.43 on ['c1-pilot', 'c4-pilot']
+public-splitr: 8 tests, mutation 271/439
+holdout-splitr: 44 tests, mutation 329/439
+public-bookings: 10 tests, mutation 416/916
+holdout-bookings: 91 tests, mutation 689/916
+public-sessionize: 8 tests, mutation 481/618
+holdout-sessionize: 37 tests, mutation 507/618
+20261117-211929-splitr-tests-haiku-t1: 175/175 valid tests, mutation 338/439
+20261117-213026-bookings-tests-haiku-t1: 258/258 valid tests, mutation 715/916
+20261117-214312-sessionize-tests-haiku-t1: 202/202 valid tests, mutation 514/618
+20261117-215035-splitr-tests-gpt-61-terra-t1: 92/92 valid tests, mutation 348/439
+20261117-215210-bookings-tests-gpt-61-terra-t1: 12/12 valid tests, mutation 707/916
+20261117-215342-sessionize-tests-gpt-61-terra-t1: 10/10 valid tests, mutation 520/618
