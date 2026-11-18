@@ -1,0 +1,148 @@
+20261118-072648-splitr-tests-gemini-35-flash-lite-t1: 21/21 valid tests, mutation 313/439
+20261118-072915-bookings-tests-gemini-35-flash-lite-t1: 17/17 valid tests, mutation 676/916
+20261118-073058-sessionize-tests-gemini-35-flash-lite-t1: 16/16 valid tests, mutation 500/618
+20261118-073252-splitr-tests-gemini-35-flash-lite-t2: 19/19 valid tests, mutation 307/439
+20261118-073406-bookings-tests-gemini-35-flash-lite-t2: 15/15 valid tests, mutation 645/916
+20261118-073554-sessionize-tests-gemini-35-flash-lite-t2: 18/18 valid tests, mutation 496/618
+20261118-073735-splitr-tests-gemini-35-flash-lite-t3: 18/18 valid tests, mutation 300/439
+20261118-073910-bookings-tests-gemini-35-flash-lite-t3: 13/13 valid tests, mutation 668/916
+20261118-074119-sessionize-tests-gemini-35-flash-lite-t3: 14/14 valid tests, mutation 486/618
+20261118-074710-splitr-tests-gemini-35-flash-lite-t4: 19/19 valid tests, mutation 318/439
+20261118-074948-bookings-tests-gemini-35-flash-lite-t4: 11/11 valid tests, mutation 674/916
+20261118-075153-sessionize-tests-gemini-35-flash-lite-t4: 13/13 valid tests, mutation 497/618
+20261118-075354-splitr-tests-gemini-35-flash-lite-t5: 14/14 valid tests, mutation 284/439
+20261118-075626-bookings-tests-gemini-35-flash-lite-t5: 18/18 valid tests, mutation 627/916
+20261118-075930-sessionize-tests-gemini-35-flash-lite-t5: 11/11 valid tests, mutation 491/618
+20261118-121310-splitr-tests-haiku-t1: 131/131 valid tests, mutation 335/439
+20261118-121800-bookings-tests-haiku-t1: 252/252 valid tests, mutation 718/916
+20261118-122008-sessionize-tests-haiku-t1: 207/207 valid tests, mutation 506/618
+20261118-122242-splitr-tests-gpt-61-terra-t1: 52/52 valid tests, mutation 348/439
+20261118-122424-bookings-tests-gpt-61-terra-t1: 14/14 valid tests, mutation 711/916
+20261118-122700-sessionize-tests-gpt-61-terra-t1: 17/17 valid tests, mutation 518/618
+20261118-122818-splitr-tests-haiku-t2: 201/201 valid tests, mutation 336/439
+20261118-125734-bookings-tests-haiku-t2: 267/267 valid tests, mutation 711/916
+20261118-130526-sessionize-tests-haiku-t2: 157/157 valid tests, mutation 514/618
+20261118-131037-splitr-tests-gpt-61-terra-t2: 98/98 valid tests, mutation 346/439
+20261118-131309-bookings-tests-gpt-61-terra-t2: 16/16 valid tests, mutation 710/916
+20261118-131438-sessionize-tests-gpt-61-terra-t2: 16/16 valid tests, mutation 520/618
+20261118-131645-splitr-tests-haiku-t3: 186/186 valid tests, mutation 343/439
+20261118-132826-bookings-tests-haiku-t3: 272/272 valid tests, mutation 719/916
+20261118-133926-sessionize-tests-haiku-t3: 174/174 valid tests, mutation 516/618
+20261118-134444-splitr-tests-gpt-61-terra-t3: 92/92 valid tests, mutation 346/439
+20261118-134638-bookings-tests-gpt-61-terra-t3: 15/15 valid tests, mutation 713/916
+20261118-134812-sessionize-tests-gpt-61-terra-t3: 14/14 valid tests, mutation 521/618
+20261118-135024-splitr-tests-haiku-t4: 168/168 valid tests, mutation 342/439
+20261118-140413-bookings-tests-haiku-t4: 224/224 valid tests, mutation 713/916
+20261118-142400-sessionize-tests-haiku-t4: 175/175 valid tests, mutation 516/618
+20261118-142733-splitr-tests-gpt-61-terra-t4: 55/55 valid tests, mutation 349/439
+20261118-143019-bookings-tests-gpt-61-terra-t4: 133/133 valid tests, mutation 715/916
+20261118-143214-sessionize-tests-gpt-61-terra-t4: 14/14 valid tests, mutation 521/618
+20261118-143341-splitr-tests-haiku-t5: 188/188 valid tests, mutation 338/439
+20261118-143846-bookings-tests-haiku-t5: 218/218 valid tests, mutation 711/916
+20261118-144958-sessionize-tests-haiku-t5: 151/151 valid tests, mutation 513/618
+20261118-145342-splitr-tests-gpt-61-terra-t5: 90/90 valid tests, mutation 349/439
+20261118-145549-bookings-tests-gpt-61-terra-t5: 15/15 valid tests, mutation 709/916
+20261118-145719-sessionize-tests-gpt-61-terra-t5: 19/19 valid tests, mutation 520/618
+20261118-145844-splitr-tests-bb-haiku-t1: 166/166 valid tests, mutation 337/439
+20261118-150113-bookings-tests-bb-haiku-t1: 219/219 valid tests, mutation 715/916
+20261118-150358-sessionize-tests-bb-haiku-t1: 212/212 valid tests, mutation 512/618
+20261118-150643-splitr-tests-bb-gpt-61-terra-t1: 42/42 valid tests, mutation 337/439
+20261118-150832-bookings-tests-bb-gpt-61-terra-t1: 15/15 valid tests, mutation 708/916
+20261118-151108-sessionize-tests-bb-gpt-61-terra-t1: 14/14 valid tests, mutation 519/618
+20261118-151242-splitr-tests-bb-haiku-t2: 215/215 valid tests, mutation 338/439
+20261118-151439-bookings-tests-bb-haiku-t2: 207/207 valid tests, mutation 717/916
+20261118-151705-sessionize-tests-bb-haiku-t2: 178/178 valid tests, mutation 514/618
+20261118-152008-splitr-tests-bb-gpt-61-terra-t2: 79/79 valid tests, mutation 337/439
+20261118-152210-bookings-tests-bb-gpt-61-terra-t2: 19/19 valid tests, mutation 712/916
+20261118-152340-sessionize-tests-bb-gpt-61-terra-t2: 13/13 valid tests, mutation 518/618
+20261118-152558-splitr-tests-bb-haiku-t3: 160/160 valid tests, mutation 338/439
+20261118-152938-bookings-tests-bb-haiku-t3: 198/198 valid tests, mutation 714/916
+20261118-153216-sessionize-tests-bb-haiku-t3: 161/161 valid tests, mutation 515/618
+20261118-153428-splitr-tests-bb-gpt-61-terra-t3: 75/75 valid tests, mutation 336/439
+20261118-153630-bookings-tests-bb-gpt-61-terra-t3: 137/137 valid tests, mutation 717/916
+20261118-153927-sessionize-tests-bb-gpt-61-terra-t3: 16/16 valid tests, mutation 518/618
+20261118-154132-splitr-tests-sonnet-t1: 130/130 valid tests, mutation 338/439
+20261118-154255-bookings-tests-sonnet-t1: 177/177 valid tests, mutation 714/916
+20261118-154413-sessionize-tests-sonnet-t1: 59/59 valid tests, mutation 517/618
+20261118-154525-splitr-tests-sonnet-t2: 146/146 valid tests, mutation 340/439
+20261118-154648-bookings-tests-sonnet-t2: 126/126 valid tests, mutation 713/916
+20261118-154834-sessionize-tests-sonnet-t2: 91/91 valid tests, mutation 511/618
+20261118-154931-splitr-tests-sonnet-t3: 124/124 valid tests, mutation 341/439
+20261118-155042-bookings-tests-sonnet-t3: 153/153 valid tests, mutation 718/916
+20261118-155220-sessionize-tests-sonnet-t3: 156/156 valid tests, mutation 513/618
+20261118-072648-splitr-tests-gemini-35-flash-lite-t1: faulty caught 22/22, false alarms 3/11
+20261118-072915-bookings-tests-gemini-35-flash-lite-t1: faulty caught 19/21, false alarms 0/11
+20261118-073058-sessionize-tests-gemini-35-flash-lite-t1: faulty caught 22/24, false alarms 0/11
+20261118-073252-splitr-tests-gemini-35-flash-lite-t2: faulty caught 22/22, false alarms 3/11
+20261118-073406-bookings-tests-gemini-35-flash-lite-t2: faulty caught 21/21, false alarms 11/11
+20261118-073554-sessionize-tests-gemini-35-flash-lite-t2: faulty caught 22/24, false alarms 0/11
+20261118-073735-splitr-tests-gemini-35-flash-lite-t3: faulty caught 20/22, false alarms 0/11
+20261118-073910-bookings-tests-gemini-35-flash-lite-t3: faulty caught 19/21, false alarms 0/11
+20261118-074119-sessionize-tests-gemini-35-flash-lite-t3: faulty caught 23/24, false alarms 0/11
+20261118-074710-splitr-tests-gemini-35-flash-lite-t4: faulty caught 22/22, false alarms 3/11
+20261118-074948-bookings-tests-gemini-35-flash-lite-t4: faulty caught 21/21, false alarms 0/11
+20261118-075153-sessionize-tests-gemini-35-flash-lite-t4: faulty caught 21/24, false alarms 0/11
+20261118-075354-splitr-tests-gemini-35-flash-lite-t5: faulty caught 19/22, false alarms 0/11
+20261118-075626-bookings-tests-gemini-35-flash-lite-t5: faulty caught 21/21, false alarms 11/11
+20261118-075930-sessionize-tests-gemini-35-flash-lite-t5: faulty caught 23/24, false alarms 0/11
+20261118-121310-splitr-tests-haiku-t1: faulty caught 22/22, false alarms 1/11
+20261118-121800-bookings-tests-haiku-t1: faulty caught 21/21, false alarms 3/11
+20261118-122008-sessionize-tests-haiku-t1: faulty caught 24/24, false alarms 2/11
+20261118-122242-splitr-tests-gpt-61-terra-t1: faulty caught 22/22, false alarms 11/11
+20261118-122424-bookings-tests-gpt-61-terra-t1: faulty caught 21/21, false alarms 0/11
+20261118-122700-sessionize-tests-gpt-61-terra-t1: faulty caught 24/24, false alarms 11/11
+20261118-122818-splitr-tests-haiku-t2: faulty caught 21/22, false alarms 0/11
+20261118-125734-bookings-tests-haiku-t2: faulty caught 21/21, false alarms 2/11
+20261118-130526-sessionize-tests-haiku-t2: faulty caught 24/24, false alarms 1/11
+20261118-131037-splitr-tests-gpt-61-terra-t2: faulty caught 22/22, false alarms 11/11
+20261118-131309-bookings-tests-gpt-61-terra-t2: faulty caught 21/21, false alarms 2/11
+20261118-131438-sessionize-tests-gpt-61-terra-t2: faulty caught 24/24, false alarms 6/11
+20261118-131645-splitr-tests-haiku-t3: faulty caught 22/22, false alarms 7/11
+20261118-132826-bookings-tests-haiku-t3: faulty caught 21/21, false alarms 0/11
+20261118-133926-sessionize-tests-haiku-t3: faulty caught 24/24, false alarms 1/11
+20261118-134444-splitr-tests-gpt-61-terra-t3: faulty caught 22/22, false alarms 11/11
+20261118-134638-bookings-tests-gpt-61-terra-t3: faulty caught 21/21, false alarms 1/11
+20261118-134812-sessionize-tests-gpt-61-terra-t3: faulty caught 24/24, false alarms 11/11
+20261118-135024-splitr-tests-haiku-t4: faulty caught 21/22, false alarms 7/11
+20261118-140413-bookings-tests-haiku-t4: faulty caught 21/21, false alarms 1/11
+20261118-142400-sessionize-tests-haiku-t4: faulty caught 24/24, false alarms 0/11
+20261118-142733-splitr-tests-gpt-61-terra-t4: faulty caught 22/22, false alarms 11/11
+20261118-143019-bookings-tests-gpt-61-terra-t4: faulty caught 21/21, false alarms 1/11
+20261118-143214-sessionize-tests-gpt-61-terra-t4: faulty caught 24/24, false alarms 6/11
+20261118-143341-splitr-tests-haiku-t5: faulty caught 22/22, false alarms 0/11
+20261118-143846-bookings-tests-haiku-t5: faulty caught 21/21, false alarms 1/11
+20261118-144958-sessionize-tests-haiku-t5: faulty caught 24/24, false alarms 0/11
+20261118-145342-splitr-tests-gpt-61-terra-t5: faulty caught 22/22, false alarms 11/11
+20261118-145549-bookings-tests-gpt-61-terra-t5: faulty caught 21/21, false alarms 4/11
+20261118-145719-sessionize-tests-gpt-61-terra-t5: faulty caught 24/24, false alarms 11/11
+20261118-145844-splitr-tests-bb-haiku-t1: faulty caught 21/22, false alarms 11/11
+20261118-150113-bookings-tests-bb-haiku-t1: faulty caught 21/21, false alarms 1/11
+20261118-150358-sessionize-tests-bb-haiku-t1: faulty caught 24/24, false alarms 1/11
+20261118-150643-splitr-tests-bb-gpt-61-terra-t1: faulty caught 22/22, false alarms 6/11
+20261118-150832-bookings-tests-bb-gpt-61-terra-t1: faulty caught 21/21, false alarms 0/11
+20261118-151108-sessionize-tests-bb-gpt-61-terra-t1: faulty caught 24/24, false alarms 0/11
+20261118-151242-splitr-tests-bb-haiku-t2: faulty caught 21/22, false alarms 1/11
+20261118-151439-bookings-tests-bb-haiku-t2: faulty caught 21/21, false alarms 0/11
+20261118-151705-sessionize-tests-bb-haiku-t2: faulty caught 24/24, false alarms 0/11
+20261118-152008-splitr-tests-bb-gpt-61-terra-t2: faulty caught 22/22, false alarms 11/11
+20261118-152210-bookings-tests-bb-gpt-61-terra-t2: faulty caught 21/21, false alarms 0/11
+20261118-152340-sessionize-tests-bb-gpt-61-terra-t2: faulty caught 24/24, false alarms 1/11
+20261118-152558-splitr-tests-bb-haiku-t3: faulty caught 20/22, false alarms 0/11
+20261118-152938-bookings-tests-bb-haiku-t3: faulty caught 21/21, false alarms 0/11
+20261118-153216-sessionize-tests-bb-haiku-t3: faulty caught 24/24, false alarms 1/11
+20261118-153428-splitr-tests-bb-gpt-61-terra-t3: faulty caught 22/22, false alarms 6/11
+20261118-153630-bookings-tests-bb-gpt-61-terra-t3: faulty caught 21/21, false alarms 1/11
+20261118-153927-sessionize-tests-bb-gpt-61-terra-t3: faulty caught 24/24, false alarms 1/11
+20261118-154132-splitr-tests-sonnet-t1: faulty caught 22/22, false alarms 10/11
+20261118-154255-bookings-tests-sonnet-t1: faulty caught 21/21, false alarms 1/11
+20261118-154413-sessionize-tests-sonnet-t1: faulty caught 24/24, false alarms 2/11
+20261118-154525-splitr-tests-sonnet-t2: faulty caught 22/22, false alarms 10/11
+20261118-154648-bookings-tests-sonnet-t2: faulty caught 21/21, false alarms 3/11
+20261118-154834-sessionize-tests-sonnet-t2: faulty caught 24/24, false alarms 1/11
+20261118-154931-splitr-tests-sonnet-t3: faulty caught 22/22, false alarms 0/11
+20261118-155042-bookings-tests-sonnet-t3: faulty caught 21/21, false alarms 2/11
+20261118-155220-sessionize-tests-sonnet-t3: faulty caught 24/24, false alarms 1/11
+analysed 307 codebases
+wrote results/c3-report.md
+wrote /Users/jimmynguyen/git/me/sdlc-lab/results/c1-c1-main-report.md
+wrote /Users/jimmynguyen/git/me/sdlc-lab/results/c4-c4-main-report.md

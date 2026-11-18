@@ -1,0 +1,342 @@
+run   splitr none claude-haiku-5-5 t1  (spent $0.56)
+  public 8/8 holdout 38/44 [stated 8/8 implied 17/17 arbitrary 13/19] docs 0f/0w gamed=False $0.009 56s calls=9
+run   splitr plan claude-haiku-5-5 t1  (spent $0.58)
+  public 8/8 holdout 39/44 [stated 8/8 implied 17/17 arbitrary 14/19] docs 5f/1601w gamed=False $0.011 68s calls=9
+run   splitr speckit claude-haiku-5-5 t1  (spent $0.59)
+  public 8/8 holdout 34/44 [stated 8/8 implied 16/17 arbitrary 10/19] docs 8f/8648w gamed=False $0.046 217s calls=33
+run   splitr kiro claude-haiku-5-5 t1  (spent $0.70)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/9349w gamed=False $0.061 310s calls=31
+run   bookings none claude-haiku-5-5 t1  (spent $0.97)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 0f/0w gamed=False $0.007 41s calls=6
+run   bookings plan claude-haiku-5-5 t1  (spent $1.01)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 1f/2063w gamed=False $0.018 102s calls=11
+run   bookings speckit claude-haiku-5-5 t1  (spent $1.08)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 8f/8903w gamed=False $0.064 309s calls=34
+run   bookings kiro claude-haiku-5-5 t1  (spent $1.25)
+  public 10/10 holdout 87/91 [stated 35/35 implied 34/34 arbitrary 18/22] docs 3f/10793w gamed=False $0.084 460s calls=35
+run   sessionize none claude-haiku-5-5 t1  (spent $1.38)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.004 25s calls=4
+run   sessionize plan claude-haiku-5-5 t1  (spent $1.38)
+  public 8/8 holdout 32/37 [stated 7/7 implied 16/17 arbitrary 9/13] docs 1f/1647w gamed=False $0.012 73s calls=11
+run   sessionize speckit claude-haiku-5-5 t1  (spent $1.40)
+  public 8/8 holdout 30/37 [stated 7/7 implied 15/17 arbitrary 8/13] docs 8f/8002w gamed=False $0.051 264s calls=30
+run   sessionize kiro claude-haiku-5-5 t1  (spent $1.45)
+  public 8/8 holdout 35/37 [stated 7/7 implied 17/17 arbitrary 11/13] docs 4f/8883w gamed=False $0.067 334s calls=31
+run   splitr none claude-haiku-5-5 t2  (spent $1.51)
+  public 8/8 holdout 34/44 [stated 8/8 implied 17/17 arbitrary 9/19] docs 0f/0w gamed=False $0.007 43s calls=6
+run   splitr plan claude-haiku-5-5 t2  (spent $1.52)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 7f/2285w gamed=False $0.015 99s calls=10
+run   splitr speckit claude-haiku-5-5 t2  (spent $1.54)
+  public 8/8 holdout 33/44 [stated 8/8 implied 16/17 arbitrary 9/19] docs 8f/7946w gamed=False $0.049 231s calls=30
+run   splitr kiro claude-haiku-5-5 t2  (spent $1.58)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/9267w gamed=False $0.062 317s calls=31
+run   bookings none claude-haiku-5-5 t2  (spent $1.65)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 0f/0w gamed=False $0.009 52s calls=8
+run   bookings plan claude-haiku-5-5 t2  (spent $1.66)
+  public 10/10 holdout 85/91 [stated 35/35 implied 34/34 arbitrary 16/22] docs 1f/1660w gamed=False $0.021 123s calls=10
+run   bookings speckit claude-haiku-5-5 t2  (spent $1.68)
+  public 10/10 holdout 82/91 [stated 35/35 implied 34/34 arbitrary 13/22] docs 8f/10037w gamed=False $0.070 340s calls=35
+run   bookings kiro claude-haiku-5-5 t2  (spent $1.75)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 3f/8758w gamed=False $0.093 481s calls=25
+run   sessionize none claude-haiku-5-5 t2  (spent $1.84)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.005 30s calls=5
+run   sessionize plan claude-haiku-5-5 t2  (spent $1.84)
+  public 8/8 holdout 33/37 [stated 7/7 implied 17/17 arbitrary 9/13] docs 1f/1401w gamed=False $0.013 76s calls=11
+run   sessionize speckit claude-haiku-5-5 t2  (spent $1.86)
+  public 8/8 holdout 29/37 [stated 7/7 implied 15/17 arbitrary 7/13] docs 8f/7917w gamed=False $0.044 194s calls=34
+run   sessionize kiro claude-haiku-5-5 t2  (spent $1.90)
+  public 8/8 holdout 33/37 [stated 7/7 implied 16/17 arbitrary 10/13] docs 4f/8048w gamed=False $0.081 405s calls=30
+run   splitr none claude-haiku-5-5 t3  (spent $1.98)
+  public 8/8 holdout 34/44 [stated 7/8 implied 17/17 arbitrary 10/19] docs 0f/0w gamed=False $0.006 39s calls=5
+run   splitr plan claude-haiku-5-5 t3  (spent $1.99)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 1f/2079w gamed=False $0.020 123s calls=10
+run   splitr speckit claude-haiku-5-5 t3  (spent $2.01)
+  public 8/8 holdout 37/44 [stated 8/8 implied 16/17 arbitrary 13/19] docs 8f/9427w gamed=False $0.052 239s calls=36
+run   splitr kiro claude-haiku-5-5 t3  (spent $2.06)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/8960w gamed=False $0.068 348s calls=27
+run   bookings none claude-haiku-5-5 t3  (spent $2.13)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 0f/0w gamed=False $0.009 52s calls=9
+run   bookings plan claude-haiku-5-5 t3  (spent $2.14)
+  public 10/10 holdout 88/91 [stated 35/35 implied 34/34 arbitrary 19/22] docs 1f/2020w gamed=False $0.022 132s calls=11
+run   bookings speckit claude-haiku-5-5 t3  (spent $2.16)
+  public 10/10 holdout 82/91 [stated 35/35 implied 33/34 arbitrary 14/22] docs 8f/9941w gamed=False $0.060 287s calls=32
+run   bookings kiro claude-haiku-5-5 t3  (spent $2.22)
+  public 10/10 holdout 87/91 [stated 35/35 implied 34/34 arbitrary 18/22] docs 3f/9870w gamed=False $0.115 456s calls=52
+run   sessionize none claude-haiku-5-5 t3  (spent $2.33)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.005 29s calls=5
+run   sessionize plan claude-haiku-5-5 t3  (spent $2.34)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 1f/1437w gamed=False $0.010 59s calls=9
+run   sessionize speckit claude-haiku-5-5 t3  (spent $2.35)
+  public 8/8 holdout 31/37 [stated 7/7 implied 16/17 arbitrary 8/13] docs 8f/8113w gamed=False $0.049 230s calls=28
+run   sessionize kiro claude-haiku-5-5 t3  (spent $2.40)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 3f/8508w gamed=False $0.054 269s calls=31
+run   splitr none claude-haiku-5-5 t4  (spent $2.45)
+  public 8/8 holdout 37/44 [stated 8/8 implied 17/17 arbitrary 12/19] docs 0f/0w gamed=False $0.006 40s calls=5
+run   splitr plan claude-haiku-5-5 t4  (spent $2.46)
+  public 8/8 holdout 37/44 [stated 8/8 implied 16/17 arbitrary 13/19] docs 1f/2488w gamed=False $0.022 130s calls=13
+run   splitr speckit claude-haiku-5-5 t4  (spent $2.48)
+  public 8/8 holdout 36/44 [stated 8/8 implied 14/17 arbitrary 14/19] docs 8f/8847w gamed=False $0.046 217s calls=26
+run   splitr kiro claude-haiku-5-5 t4  (spent $2.53)
+  public 8/8 holdout 37/44 [stated 7/8 implied 16/17 arbitrary 14/19] docs 3f/9005w gamed=False $0.062 314s calls=28
+run   bookings none claude-haiku-5-5 t4  (spent $2.59)
+  public 10/10 holdout 82/91 [stated 34/35 implied 34/34 arbitrary 14/22] docs 0f/0w gamed=False $0.007 40s calls=6
+run   bookings plan claude-haiku-5-5 t4  (spent $2.59)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 1f/1798w gamed=False $0.022 130s calls=13
+run   bookings speckit claude-haiku-5-5 t4  (spent $2.62)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 8f/9386w gamed=False $0.064 301s calls=32
+run   bookings kiro claude-haiku-5-5 t4  (spent $2.68)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 3f/10514w gamed=False $0.114 505s calls=36
+run   sessionize none claude-haiku-5-5 t4  (spent $2.80)
+  public 8/8 holdout 31/37 [stated 7/7 implied 16/17 arbitrary 8/13] docs 0f/0w gamed=False $0.005 26s calls=5
+run   sessionize plan claude-haiku-5-5 t4  (spent $2.80)
+  public 8/8 holdout 34/37 [stated 7/7 implied 16/17 arbitrary 11/13] docs 1f/1539w gamed=False $0.011 66s calls=11
+run   sessionize speckit claude-haiku-5-5 t4  (spent $2.81)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 8f/7637w gamed=False $0.046 227s calls=31
+run   sessionize kiro claude-haiku-5-5 t4  (spent $2.86)
+  public 8/8 holdout 33/37 [stated 7/7 implied 17/17 arbitrary 9/13] docs 3f/9306w gamed=False $0.052 264s calls=21
+run   splitr none claude-haiku-5-5 t5  (spent $2.91)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 0f/0w gamed=False $0.007 44s calls=6
+run   splitr plan claude-haiku-5-5 t5  (spent $2.92)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 1f/1710w gamed=False $0.014 90s calls=12
+run   splitr speckit claude-haiku-5-5 t5  (spent $2.93)
+  public 8/8 holdout 39/44 [stated 8/8 implied 17/17 arbitrary 14/19] docs 8f/8925w gamed=False $0.053 252s calls=32
+run   splitr kiro claude-haiku-5-5 t5  (spent $2.98)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 3f/9730w gamed=False $0.073 390s calls=25
+run   bookings none claude-haiku-5-5 t5  (spent $3.06)
+  public 10/10 holdout 82/91 [stated 35/35 implied 34/34 arbitrary 13/22] docs 0f/0w gamed=False $0.008 47s calls=8
+run   bookings plan claude-haiku-5-5 t5  (spent $3.06)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 1f/1858w gamed=False $0.022 126s calls=17
+run   bookings speckit claude-haiku-5-5 t5  (spent $3.09)
+  public 10/10 holdout 81/91 [stated 35/35 implied 31/34 arbitrary 15/22] docs 8f/9513w gamed=False $0.059 275s calls=35
+run   bookings kiro claude-haiku-5-5 t5  (spent $3.15)
+  public 10/10 holdout 85/91 [stated 35/35 implied 34/34 arbitrary 16/22] docs 3f/10322w gamed=False $0.064 344s calls=19
+run   sessionize none claude-haiku-5-5 t5  (spent $3.21)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.005 32s calls=6
+run   sessionize plan claude-haiku-5-5 t5  (spent $3.21)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 1f/1527w gamed=False $0.012 70s calls=11
+run   sessionize speckit claude-haiku-5-5 t5  (spent $3.23)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 8f/7557w gamed=False $0.046 215s calls=29
+run   sessionize kiro claude-haiku-5-5 t5  (spent $3.27)
+  public 8/8 holdout 35/37 [stated 7/7 implied 17/17 arbitrary 11/13] docs 3f/9038w gamed=False $0.056 282s calls=20
+finished. spent $3.33 on ['c1-main', 'c4-main']
+run   splitr speckit-clarify claude-haiku-5-5 t1  (spent $3.33)
+  public 8/8 holdout 35/44 [stated 8/8 implied 16/17 arbitrary 11/19] docs 8f/8248w gamed=False $0.066 309s calls=56
+run   bookings speckit-clarify claude-haiku-5-5 t1  (spent $3.39)
+  public 10/10 holdout 84/91 [stated 35/35 implied 34/34 arbitrary 15/22] docs 8f/8740w gamed=False $0.064 305s calls=48
+run   sessionize speckit-clarify claude-haiku-5-5 t1  (spent $3.46)
+  public 8/8 holdout 33/37 [stated 7/7 implied 16/17 arbitrary 10/13] docs 8f/9369w gamed=False $0.073 339s calls=51
+run   splitr speckit-clarify claude-haiku-5-5 t2  (spent $3.53)
+  public 8/8 holdout 39/44 [stated 8/8 implied 15/17 arbitrary 16/19] docs 8f/9991w gamed=False $0.073 357s calls=60
+run   bookings speckit-clarify claude-haiku-5-5 t2  (spent $3.60)
+  public 10/10 holdout 85/91 [stated 35/35 implied 34/34 arbitrary 16/22] docs 8f/9405w gamed=False $0.069 307s calls=58
+run   sessionize speckit-clarify claude-haiku-5-5 t2  (spent $3.67)
+  public 8/8 holdout 34/37 [stated 7/7 implied 17/17 arbitrary 10/13] docs 8f/8113w gamed=False $0.057 261s calls=44
+run   splitr speckit-clarify claude-haiku-5-5 t3  (spent $3.73)
+  public 8/8 holdout 41/44 [stated 7/8 implied 16/17 arbitrary 18/19] docs 8f/8130w gamed=True $0.062 289s calls=54
+run   bookings speckit-clarify claude-haiku-5-5 t3  (spent $3.79)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 8f/9100w gamed=False $0.069 316s calls=51
+run   sessionize speckit-clarify claude-haiku-5-5 t3  (spent $3.86)
+  public 8/8 holdout 33/37 [stated 7/7 implied 16/17 arbitrary 10/13] docs 8f/8996w gamed=False $0.065 312s calls=42
+run   splitr speckit-clarify claude-haiku-5-5 t4  (spent $3.92)
+  public 8/8 holdout 38/44 [stated 8/8 implied 17/17 arbitrary 13/19] docs 8f/8633w gamed=False $0.056 260s calls=44
+run   bookings speckit-clarify claude-haiku-5-5 t4  (spent $3.98)
+  public 10/10 holdout 88/91 [stated 35/35 implied 34/34 arbitrary 19/22] docs 8f/8412w gamed=False $0.068 312s calls=51
+run   sessionize speckit-clarify claude-haiku-5-5 t4  (spent $4.05)
+  public 8/8 holdout 35/37 [stated 7/7 implied 17/17 arbitrary 11/13] docs 8f/7889w gamed=False $0.062 307s calls=44
+run   splitr speckit-clarify claude-haiku-5-5 t5  (spent $4.11)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 8f/8285w gamed=False $0.055 251s calls=39
+run   bookings speckit-clarify claude-haiku-5-5 t5  (spent $4.17)
+  public 10/10 holdout 83/91 [stated 35/35 implied 34/34 arbitrary 14/22] docs 8f/9085w gamed=False $0.089 518s calls=59
+run   sessionize speckit-clarify claude-haiku-5-5 t5  (spent $4.25)
+  public 8/8 holdout 32/37 [stated 7/7 implied 16/17 arbitrary 9/13] docs 8f/7457w gamed=False $0.057 266s calls=52
+finished. spent $4.31 on ['c1-main', 'c4-main']
+write splitr claude-haiku-5-5 whitebox t1  (spent $4.31)
+  file=True last_pytest=139 passed in 2.37s $0.023 290s calls=11
+write bookings claude-haiku-5-5 whitebox t1  (spent $4.33)
+  file=True last_pytest=262 passed in 15.88s $0.018 128s calls=4
+write sessionize claude-haiku-5-5 whitebox t1  (spent $4.35)
+  file=True last_pytest=215 passed in 3.83s $0.017 153s calls=7
+write splitr gpt-6.1-terra whitebox t1  (spent $4.37)
+  file=True last_pytest=60 passed in 1.09s $0.085 102s calls=7
+write bookings gpt-6.1-terra whitebox t1  (spent $4.45)
+  file=True last_pytest=24 passed in 1.60s $0.129 156s calls=7
+write sessionize gpt-6.1-terra whitebox t1  (spent $4.58)
+  file=True last_pytest=25 passed in 0.47s $0.062 78s calls=5
+write splitr claude-haiku-5-5 whitebox t2  (spent $4.65)
+  file=True last_pytest=209 passed in 6.26s $0.051 1756s calls=38
+write bookings claude-haiku-5-5 whitebox t2  (spent $4.70)
+  file=True last_pytest=277 passed in 16.52s $0.029 472s calls=14
+write sessionize claude-haiku-5-5 whitebox t2  (spent $4.73)
+  file=True last_pytest=165 passed in 3.37s $0.023 311s calls=13
+write splitr gpt-6.1-terra whitebox t2  (spent $4.75)
+  file=True last_pytest=106 passed in 2.53s $0.123 152s calls=8
+write bookings gpt-6.1-terra whitebox t2  (spent $4.87)
+  file=True last_pytest=26 passed in 1.62s $0.074 89s calls=5
+write sessionize gpt-6.1-terra whitebox t2  (spent $4.95)
+  file=True last_pytest=24 passed in 0.56s $0.099 126s calls=6
+write splitr claude-haiku-5-5 whitebox t3  (spent $5.05)
+  file=True last_pytest=194 passed in 4.91s $0.032 701s calls=16
+write bookings claude-haiku-5-5 whitebox t3  (spent $5.08)
+  file=True last_pytest=3 failed, 279 passed in 16.49s $0.044 660s calls=16
+write sessionize claude-haiku-5-5 whitebox t3  (spent $5.12)
+  file=True last_pytest=182 passed in 3.20s $0.026 319s calls=9
+write splitr gpt-6.1-terra whitebox t3  (spent $5.15)
+  file=True last_pytest=100 passed in 2.14s $0.090 113s calls=7
+write bookings gpt-6.1-terra whitebox t3  (spent $5.24)
+  file=True last_pytest=25 passed in 1.58s $0.092 94s calls=7
+write sessionize gpt-6.1-terra whitebox t3  (spent $5.33)
+  file=True last_pytest=22 passed in 0.44s $0.104 132s calls=6
+write splitr claude-haiku-5-5 whitebox t4  (spent $5.43)
+  file=True last_pytest=176 passed in 4.27s $0.062 829s calls=26
+write bookings claude-haiku-5-5 whitebox t4  (spent $5.50)
+  file=True last_pytest=234 passed in 12.90s $0.041 1187s calls=26
+write sessionize claude-haiku-5-5 whitebox t4  (spent $5.54)
+  file=True last_pytest=183 passed in 3.22s $0.026 213s calls=10
+write splitr gpt-6.1-terra whitebox t4  (spent $5.56)
+  file=True last_pytest=63 passed in 1.15s $0.151 166s calls=9
+write bookings gpt-6.1-terra whitebox t4  (spent $5.71)
+  file=True last_pytest=143 passed in 9.04s $0.076 115s calls=5
+write sessionize gpt-6.1-terra whitebox t4  (spent $5.79)
+  file=True last_pytest=22 passed in 0.41s $0.077 87s calls=6
+write splitr claude-haiku-5-5 whitebox t5  (spent $5.86)
+  file=True last_pytest=196 passed in 4.78s $0.040 305s calls=13
+write bookings claude-haiku-5-5 whitebox t5  (spent $5.90)
+  file=True last_pytest=228 passed in 13.64s $0.033 672s calls=16
+write sessionize claude-haiku-5-5 whitebox t5  (spent $5.94)
+  file=True last_pytest=159 passed in 2.90s $0.027 224s calls=9
+write splitr gpt-6.1-terra whitebox t5  (spent $5.96)
+  file=True last_pytest=98 passed in 2.65s $0.102 127s calls=8
+write bookings gpt-6.1-terra whitebox t5  (spent $6.07)
+  file=True last_pytest=25 passed in 1.60s $0.081 90s calls=6
+write sessionize gpt-6.1-terra whitebox t5  (spent $6.15)
+  file=True last_pytest=27 passed in 0.56s $0.064 84s calls=5
+finished. spent $6.21 on ['c1-main', 'c4-main']
+write splitr claude-haiku-5-5 blackbox t1  (spent $6.21)
+  file=True last_pytest=155 failed, 11 passed in 1.77s $0.023 149s calls=7
+write bookings claude-haiku-5-5 blackbox t1  (spent $6.23)
+  file=True last_pytest=229 passed in 13.49s $0.028 165s calls=10
+write sessionize claude-haiku-5-5 blackbox t1  (spent $6.26)
+  file=True last_pytest=220 passed in 3.69s $0.026 165s calls=10
+write splitr gpt-6.1-terra blackbox t1  (spent $6.29)
+  file=True last_pytest=50 passed in 1.51s $0.085 109s calls=8
+write bookings gpt-6.1-terra blackbox t1  (spent $6.37)
+  file=True last_pytest=25 passed in 1.58s $0.117 156s calls=7
+write sessionize gpt-6.1-terra blackbox t1  (spent $6.49)
+  file=True last_pytest=22 passed in 0.42s $0.076 93s calls=7
+write splitr claude-haiku-5-5 blackbox t2  (spent $6.57)
+  file=True last_pytest=223 passed in 3.46s $0.019 117s calls=8
+write bookings claude-haiku-5-5 blackbox t2  (spent $6.59)
+  file=True last_pytest=217 passed in 12.88s $0.018 146s calls=8
+write sessionize claude-haiku-5-5 blackbox t2  (spent $6.60)
+  file=True last_pytest=186 passed in 3.36s $0.033 183s calls=10
+write splitr gpt-6.1-terra blackbox t2  (spent $6.64)
+  file=True last_pytest=87 passed in 1.65s $0.099 122s calls=9
+write bookings gpt-6.1-terra blackbox t2  (spent $6.74)
+  file=True last_pytest=29 passed in 1.80s $0.062 90s calls=5
+write sessionize gpt-6.1-terra blackbox t2  (spent $6.80)
+  file=True last_pytest=21 passed in 0.42s $0.095 138s calls=7
+write splitr claude-haiku-5-5 blackbox t3  (spent $6.89)
+  file=True last_pytest=168 passed in 4.15s $0.035 220s calls=13
+write bookings claude-haiku-5-5 blackbox t3  (spent $6.93)
+  file=True last_pytest=208 passed in 12.56s $0.018 158s calls=10
+write sessionize claude-haiku-5-5 blackbox t3  (spent $6.95)
+  file=True last_pytest=169 passed in 2.89s $0.022 132s calls=8
+write splitr gpt-6.1-terra blackbox t3  (spent $6.97)
+  file=True last_pytest=83 passed in 2.22s $0.096 122s calls=9
+write bookings gpt-6.1-terra blackbox t3  (spent $7.07)
+  file=True last_pytest=147 passed in 8.68s $0.120 177s calls=7
+write sessionize gpt-6.1-terra blackbox t3  (spent $7.19)
+  file=True last_pytest=24 passed in 0.54s $0.087 125s calls=6
+finished. spent $7.27 on ['c1-main', 'c4-main']
+write splitr claude-sonnet-5-5 whitebox t1  (spent $7.27)
+  file=True last_pytest=138 passed in 2.34s $0.164 82s calls=4
+write bookings claude-sonnet-5-5 whitebox t1  (spent $7.44)
+  file=True last_pytest=187 passed in 11.16s $0.181 78s calls=3
+write sessionize claude-sonnet-5-5 whitebox t1  (spent $7.62)
+  file=True last_pytest=67 passed in 2.87s $0.168 72s calls=3
+write splitr claude-sonnet-5-5 whitebox t2  (spent $7.79)
+  file=True last_pytest=154 passed in 2.39s $0.155 83s calls=5
+write bookings claude-sonnet-5-5 whitebox t2  (spent $7.94)
+  file=True last_pytest=136 passed in 8.12s $0.167 106s calls=6
+write sessionize claude-sonnet-5-5 whitebox t2  (spent $8.11)
+  file=True last_pytest=99 passed in 1.78s $0.121 58s calls=3
+write splitr claude-sonnet-5-5 whitebox t3  (spent $8.23)
+  file=True last_pytest=132 passed in 2.19s $0.134 71s calls=4
+write bookings claude-sonnet-5-5 whitebox t3  (spent $8.36)
+  file=True last_pytest=163 passed in 9.79s $0.159 98s calls=4
+write sessionize claude-sonnet-5-5 whitebox t3  (spent $8.52)
+  file=True last_pytest=164 passed in 2.73s $0.258 100s calls=5
+finished. spent $8.78 on ['c1-main', 'c4-main']
+run   splitr none claude-sonnet-5-5 t1  (spent $8.78)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 0f/0w gamed=False $0.059 31s calls=3
+run   splitr plan claude-sonnet-5-5 t1  (spent $8.84)
+  public 8/8 holdout 36/44 [stated 7/8 implied 16/17 arbitrary 13/19] docs 1f/809w gamed=False $0.105 54s calls=7
+run   splitr speckit claude-sonnet-5-5 t1  (spent $8.94)
+  public 8/8 holdout 34/44 [stated 8/8 implied 16/17 arbitrary 10/19] docs 8f/4013w gamed=False $0.385 139s calls=21
+run   splitr kiro claude-sonnet-5-5 t1  (spent $9.33)
+  public 8/8 holdout 37/44 [stated 8/8 implied 16/17 arbitrary 13/19] docs 3f/6032w gamed=False $0.372 154s calls=14
+run   bookings none claude-sonnet-5-5 t1  (spent $9.70)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 0f/0w gamed=False $0.077 35s calls=5
+run   bookings plan claude-sonnet-5-5 t1  (spent $9.78)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 1f/800w gamed=False $0.118 72s calls=7
+run   bookings speckit claude-sonnet-5-5 t1  (spent $9.90)
+  public 10/10 holdout 85/91 [stated 35/35 implied 34/34 arbitrary 16/22] docs 8f/3873w gamed=False $0.393 159s calls=20
+run   bookings kiro claude-sonnet-5-5 t1  (spent $10.29)
+  public 10/10 holdout 88/91 [stated 35/35 implied 34/34 arbitrary 19/22] docs 3f/6534w gamed=False $0.479 184s calls=17
+run   sessionize none claude-sonnet-5-5 t1  (spent $10.77)
+  public 8/8 holdout 31/37 [stated 7/7 implied 16/17 arbitrary 8/13] docs 0f/0w gamed=False $0.056 25s calls=4
+run   sessionize plan claude-sonnet-5-5 t1  (spent $10.82)
+  public 8/8 holdout 29/37 [stated 7/7 implied 16/17 arbitrary 6/13] docs 1f/754w gamed=False $0.093 45s calls=8
+run   sessionize speckit claude-sonnet-5-5 t1  (spent $10.92)
+  public 8/8 holdout 30/37 [stated 7/7 implied 17/17 arbitrary 6/13] docs 9f/3862w gamed=False $0.369 124s calls=19
+run   sessionize kiro claude-sonnet-5-5 t1  (spent $11.29)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 3f/5254w gamed=False $0.367 149s calls=15
+run   splitr none claude-sonnet-5-5 t2  (spent $11.65)
+  public 8/8 holdout 34/44 [stated 8/8 implied 16/17 arbitrary 10/19] docs 0f/0w gamed=False $0.056 27s calls=3
+run   splitr plan claude-sonnet-5-5 t2  (spent $11.71)
+  public 8/8 holdout 36/44 [stated 8/8 implied 16/17 arbitrary 12/19] docs 1f/978w gamed=False $0.115 56s calls=7
+run   splitr speckit claude-sonnet-5-5 t2  (spent $11.82)
+  public 8/8 holdout 35/44 [stated 8/8 implied 16/17 arbitrary 11/19] docs 8f/3958w gamed=False $0.381 138s calls=22
+run   splitr kiro claude-sonnet-5-5 t2  (spent $12.20)
+  public 8/8 holdout 37/44 [stated 8/8 implied 16/17 arbitrary 13/19] docs 3f/5324w gamed=False $0.376 151s calls=14
+run   bookings none claude-sonnet-5-5 t2  (spent $12.58)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 0f/0w gamed=False $0.080 36s calls=4
+run   bookings plan claude-sonnet-5-5 t2  (spent $12.66)
+  public 10/10 holdout 88/91 [stated 35/35 implied 34/34 arbitrary 19/22] docs 1f/895w gamed=False $0.126 61s calls=9
+run   bookings speckit claude-sonnet-5-5 t2  (spent $12.79)
+  public 10/10 holdout 84/91 [stated 35/35 implied 33/34 arbitrary 16/22] docs 8f/3993w gamed=False $0.414 161s calls=21
+run   bookings kiro claude-sonnet-5-5 t2  (spent $13.20)
+  public 10/10 holdout 87/91 [stated 35/35 implied 34/34 arbitrary 18/22] docs 3f/7470w gamed=False $0.509 200s calls=20
+run   sessionize none claude-sonnet-5-5 t2  (spent $13.71)
+  public 8/8 holdout 31/37 [stated 7/7 implied 16/17 arbitrary 8/13] docs 0f/0w gamed=False $0.056 25s calls=5
+run   sessionize plan claude-sonnet-5-5 t2  (spent $13.76)
+  public 8/8 holdout 33/37 [stated 7/7 implied 17/17 arbitrary 9/13] docs 1f/717w gamed=False $0.094 47s calls=8
+run   sessionize speckit claude-sonnet-5-5 t2  (spent $13.86)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 8f/3485w gamed=False $0.357 119s calls=21
+run   sessionize kiro claude-sonnet-5-5 t2  (spent $14.21)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 3f/5074w gamed=False $0.329 134s calls=14
+run   splitr none claude-sonnet-5-5 t3  (spent $14.54)
+  public 8/8 holdout 34/44 [stated 7/8 implied 15/17 arbitrary 12/19] docs 0f/0w gamed=False $0.061 31s calls=4
+run   splitr plan claude-sonnet-5-5 t3  (spent $14.60)
+  public 8/8 holdout 35/44 [stated 8/8 implied 15/17 arbitrary 12/19] docs 1f/1024w gamed=False $0.115 56s calls=7
+run   splitr speckit claude-sonnet-5-5 t3  (spent $14.72)
+  public 8/8 holdout 33/44 [stated 7/8 implied 16/17 arbitrary 10/19] docs 8f/3768w gamed=False $0.387 140s calls=23
+run   splitr kiro claude-sonnet-5-5 t3  (spent $15.11)
+  public 8/8 holdout 36/44 [stated 7/8 implied 16/17 arbitrary 13/19] docs 3f/5527w gamed=False $0.394 159s calls=17
+run   bookings none claude-sonnet-5-5 t3  (spent $15.50)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 0f/0w gamed=False $0.078 34s calls=4
+run   bookings plan claude-sonnet-5-5 t3  (spent $15.58)
+  public 10/10 holdout 88/91 [stated 35/35 implied 34/34 arbitrary 19/22] docs 1f/814w gamed=False $0.128 56s calls=9
+run   bookings speckit claude-sonnet-5-5 t3  (spent $15.71)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 8f/4130w gamed=False $0.408 156s calls=20
+run   bookings kiro claude-sonnet-5-5 t3  (spent $16.11)
+  public 10/10 holdout 86/91 [stated 35/35 implied 34/34 arbitrary 17/22] docs 3f/6296w gamed=False $0.439 280s calls=15
+run   sessionize none claude-sonnet-5-5 t3  (spent $16.55)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 0f/0w gamed=False $0.055 26s calls=4
+run   sessionize plan claude-sonnet-5-5 t3  (spent $16.61)
+  public 8/8 holdout 33/37 [stated 7/7 implied 17/17 arbitrary 9/13] docs 1f/779w gamed=False $0.095 46s calls=8
+run   sessionize speckit claude-sonnet-5-5 t3  (spent $16.70)
+  public 8/8 holdout 31/37 [stated 7/7 implied 17/17 arbitrary 7/13] docs 8f/3723w gamed=False $0.360 124s calls=20
+run   sessionize kiro claude-sonnet-5-5 t3  (spent $17.06)
+  public 8/8 holdout 32/37 [stated 7/7 implied 17/17 arbitrary 8/13] docs 3f/5390w gamed=False $0.484 236s calls=19
+finished. spent $17.55 on ['c1-main', 'c4-main']

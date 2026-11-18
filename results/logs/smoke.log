@@ -1,0 +1,6 @@
+run   splitr speckit-clarify claude-haiku-5-5 t1  (spent $0.00)
+  public 8/8 holdout 38/44 [stated 8/8 implied 16/17 arbitrary 14/19] docs 8f/8959w gamed=False $0.056 265s calls=36
+finished. spent $0.06 on ['c1-smoke']
+write splitr claude-haiku-5-5 blackbox t1  (spent $0.00)
+  file=True last_pytest=176 passed in 4.13s $0.031 232s calls=16
+finished. spent $0.03 on ['c4-smoke']

@@ -1,0 +1,31 @@
+write splitr gemini-3.5-flash-lite whitebox t1  (spent $0.00)
+  file=True last_pytest=29 passed in 0.92s $0.093 146s calls=17
+write bookings gemini-3.5-flash-lite whitebox t1  (spent $0.09)
+  file=True last_pytest=27 passed in 1.65s $0.075 103s calls=13
+write sessionize gemini-3.5-flash-lite whitebox t1  (spent $0.17)
+  file=True last_pytest=24 passed in 0.42s $0.073 114s calls=14
+write splitr gemini-3.5-flash-lite whitebox t2  (spent $0.24)
+  file=True last_pytest=27 passed in 0.85s $0.027 74s calls=10
+write bookings gemini-3.5-flash-lite whitebox t2  (spent $0.27)
+  file=True last_pytest=25 passed in 1.45s $0.082 108s calls=14
+write sessionize gemini-3.5-flash-lite whitebox t2  (spent $0.35)
+  file=True last_pytest=26 passed in 0.50s $0.055 101s calls=12
+write splitr gemini-3.5-flash-lite whitebox t3  (spent $0.41)
+  file=True last_pytest=26 passed in 0.76s $0.045 95s calls=12
+write bookings gemini-3.5-flash-lite whitebox t3  (spent $0.45)
+  file=True last_pytest=23 passed in 1.37s $0.112 129s calls=14
+write sessionize gemini-3.5-flash-lite whitebox t3  (spent $0.56)
+  file=True last_pytest=22 passed in 0.40s $0.071 350s calls=14
+write splitr gemini-3.5-flash-lite whitebox t4  (spent $0.69)
+  file=True last_pytest=27 passed in 0.87s $0.114 159s calls=19
+write bookings gemini-3.5-flash-lite whitebox t4  (spent $0.83)
+  file=True last_pytest=21 passed in 1.30s $0.092 125s calls=14
+write sessionize gemini-3.5-flash-lite whitebox t4  (spent $0.96)
+  file=True last_pytest=21 passed in 0.45s $0.075 121s calls=13
+write splitr gemini-3.5-flash-lite whitebox t5  (spent $1.05)
+  file=True last_pytest=22 passed in 0.36s $0.063 152s calls=15
+write bookings gemini-3.5-flash-lite whitebox t5  (spent $1.14)
+  file=True last_pytest=28 passed in 1.71s $0.051 184s calls=12
+write sessionize gemini-3.5-flash-lite whitebox t5  (spent $1.22)
+  file=True last_pytest=19 passed in 0.35s $0.051 272s calls=12
+finished. spent $1.33 on ['c1-main', 'c4-main']

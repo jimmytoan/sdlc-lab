@@ -1,8 +1,123 @@
 # C3 report: maintainability of shipped agent code
 
-193 agent codebases and 3 reference implementations. Per-file numbers: `results/c3/metrics.jsonl`. Tools: ruff 0.17.3, pylint 4.1.3, radon 6.0.1, duplication from `sdlc/dup.py` (50 normalized tokens, 5 lines). Rule sets: `sdlc/metrics.py`.
+304 agent codebases and 3 reference implementations. Per-file numbers: `results/c3/metrics.jsonl`. Tools: ruff 0.17.3, pylint 4.1.3, radon 6.0.1, duplication from `sdlc/dup.py` (50 normalized tokens, 5 lines). Rule sets: `sdlc/metrics.py`.
 
 Caveat: the references were written by the dark factory lab session (a Claude model working against the full spec and the held-out suites), not by a human team. They are a careful baseline, not a human one.
+
+## Source: c1:c1-main
+
+### Round 1 builds by spec level, model and design (all three specs pooled)
+
+Medians per codebase (duplication: mean, and how many files have any clone).
+
+| spec_level | model | design | n | holdout | SLOC | ruff/KLOC | pylint/KLOC | CC mean | CC max | fns CC>10 | MI | dup % | files with clones |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| - | reference | reference | 3 | 100% | 186 | 59.1 | 21.6 | 7.9 | 27 | 3 | 21.1 | 0.0% | 0 |
+| brief | claude-haiku-5-5 | kiro | 15 | 92% | 391 | 40.1 | 19.7 | 4.2 | 20 | 3 | 20.3 | 1.0% | 3 |
+| brief | claude-haiku-5-5 | none | 15 | 86% | 231 | 34.6 | 24.9 | 5.8 | 20 | 3 | 27.0 | 0.4% | 1 |
+| brief | claude-haiku-5-5 | plan | 15 | 92% | 285 | 42.9 | 24.6 | 4.8 | 23 | 3 | 23.8 | 1.2% | 4 |
+| brief | claude-haiku-5-5 | speckit | 15 | 89% | 238 | 26.7 | 17.5 | 4.3 | 18 | 2 | 32.8 | 1.5% | 3 |
+| brief | claude-haiku-5-5 | speckit-clarify | 15 | 91% | 238 | 25.9 | 17.7 | 4.2 | 20 | 2 | 32.5 | 2.1% | 4 |
+| brief | claude-sonnet-5-5 | kiro | 9 | 86% | 255 | 39.3 | 22.0 | 5.3 | 18 | 3 | 15.7 | 1.2% | 3 |
+| brief | claude-sonnet-5-5 | none | 9 | 84% | 189 | 47.6 | 36.2 | 11.5 | 24 | 2 | 21.3 | 0.0% | 0 |
+| brief | claude-sonnet-5-5 | plan | 9 | 89% | 213 | 56.3 | 37.0 | 9.8 | 28 | 2 | 19.1 | 0.0% | 0 |
+| brief | claude-sonnet-5-5 | speckit | 9 | 84% | 218 | 43.8 | 27.5 | 5.4 | 21 | 3 | 24.9 | 0.0% | 0 |
+
+### Round 1 builds by spec, level and design (models pooled)
+
+Medians per codebase (duplication: mean, and how many files have any clone).
+
+| spec | spec_level | design | n | holdout | SLOC | ruff/KLOC | pylint/KLOC | CC mean | CC max | fns CC>10 | MI | dup % | files with clones |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| bookings | - | reference | 1 | 100% | 231 | 82.2 | 21.6 | 7.0 | 21 | 6 | 13.8 | 0.0% | 0 |
+| bookings | brief | kiro | 8 | 95% | 482.5 | 55.6 | 32.5 | 3.8 | 22 | 5.5 | 9.7 | 3.3% | 6 |
+| bookings | brief | none | 8 | 92% | 323 | 58.6 | 34.5 | 4.9 | 22 | 5 | 14.3 | 0.7% | 1 |
+| bookings | brief | plan | 8 | 95% | 360.5 | 75.6 | 37.9 | 5.1 | 25 | 5 | 12.3 | 2.2% | 4 |
+| bookings | brief | speckit | 8 | 91% | 358.5 | 73.6 | 29.6 | 4.1 | 22.5 | 4 | 17.8 | 2.9% | 3 |
+| bookings | brief | speckit-clarify | 5 | 92% | 399 | 34.1 | 19.5 | 3.8 | 20 | 6 | 18.9 | 6.4% | 4 |
+| sessionize | - | reference | 1 | 100% | 144 | 48.6 | 20.8 | 8.3 | 38 | 1 | 29.4 | 0.0% | 0 |
+| sessionize | brief | kiro | 8 | 89% | 303.5 | 37.5 | 17.4 | 4.4 | 15.5 | 2 | 25.5 | 0.0% | 0 |
+| sessionize | brief | none | 8 | 86% | 189.5 | 25.5 | 22.4 | 6.7 | 17.5 | 2 | 30.7 | 0.0% | 0 |
+| sessionize | brief | plan | 8 | 89% | 211.5 | 42.4 | 30.5 | 6.5 | 20 | 2 | 31.6 | 0.0% | 0 |
+| sessionize | brief | speckit | 8 | 84% | 180.5 | 17.8 | 17.9 | 4.2 | 15.5 | 1 | 39.2 | 0.0% | 0 |
+| sessionize | brief | speckit-clarify | 5 | 89% | 210 | 21.0 | 20.0 | 4.7 | 18 | 1 | 37.7 | 0.0% | 0 |
+| splitr | - | reference | 1 | 100% | 186 | 59.1 | 43.0 | 7.9 | 27 | 3 | 21.1 | 0.0% | 0 |
+| splitr | brief | kiro | 8 | 85% | 333.5 | 33.5 | 17.2 | 5.9 | 22 | 3 | 17.9 | 0.0% | 0 |
+| splitr | brief | none | 8 | 80% | 221.5 | 35.7 | 23.7 | 7.3 | 23 | 2 | 24.8 | 0.0% | 0 |
+| splitr | brief | plan | 8 | 85% | 269.5 | 38.9 | 26.6 | 7.5 | 24.5 | 2.5 | 21.2 | 0.0% | 0 |
+| splitr | brief | speckit | 8 | 78% | 236 | 31.5 | 10.9 | 5.3 | 17 | 2 | 30.7 | 0.0% | 0 |
+| splitr | brief | speckit-clarify | 5 | 86% | 238 | 16.4 | 12.3 | 4.4 | 22 | 2 | 32.5 | 0.0% | 0 |
+
+### Agent code against the reference, per spec
+
+Agent median (duplication: mean) divided by the reference value; 1.0 = same as the reference. MI: higher is better. The reference holds both the v1 and the v2 (change request) behaviour behind one flag, so it is compared with round-1 and round-2 agent code alike; for round 1 it is carrying code the agent did not have to write.
+
+| spec | round | agent n | SLOC | ruff/KLOC | pylint/KLOC | CC mean | CC max | fns CC>10 | MI | dup % |
+|---|---|---|---|---|---|---|---|---|---|---|
+| bookings | 1 | 37 | 1.50 | 0.71 | 1.54 | 0.61 | 1.10 | 0.83 | 0.97 | 2.8% vs 0 |
+| bookings | 2 | 0 | nan | nan | nan | nan | nan | nan | nan | - vs 0 |
+| sessionize | 1 | 37 | 1.41 | 0.57 | 0.96 | 0.57 | 0.45 | 1.00 | 1.05 | 0.0% vs 0 |
+| sessionize | 2 | 0 | nan | nan | nan | nan | nan | nan | nan | - vs 0 |
+| splitr | 1 | 37 | 1.28 | 0.58 | 0.42 | 0.79 | 0.81 | 0.67 | 1.13 | 0.0% vs 0 |
+| splitr | 2 | 0 | nan | nan | nan | nan | nan | nan | nan | - vs 0 |
+
+Reference values:
+
+| spec | SLOC | ruff/KLOC | pylint/KLOC | CC mean | CC max | fns CC>10 | MI | dup % |
+|---|---|---|---|---|---|---|---|---|
+| bookings | 231 | 82.2 | 21.6 | 7.0 | 21 | 6 | 13.8 | 0.0% |
+| sessionize | 144 | 48.6 | 20.8 | 8.3 | 38 | 1 | 29.4 | 0.0% |
+| splitr | 186 | 59.1 | 43.0 | 7.9 | 27 | 3 | 21.1 | 0.0% |
+
+### Do the metrics track holdout pass rate?
+
+Brief-spec round-1 builds only: on the full spec every build passed every held-out scenario, so there is no variance to explain. Spearman rho; positive means more of the metric goes with a higher pass rate. Pooled rho uses ranks within each spec so spec size does not drive it; p is a two-sided permutation test (5,000 shuffles). Uncorrected for 8 metrics.
+
+| metric | pooled rho (within-spec ranks) | p | bookings rho | sessionize rho | splitr rho |
+|---|---|---|---|---|---|
+| SLOC | +0.26 | 0.006 | -0.18 | +0.46 | +0.51 |
+| ruff/KLOC | +0.08 | 0.418 | +0.25 | +0.10 | -0.11 |
+| pylint/KLOC | +0.01 | 0.903 | +0.22 | -0.07 | -0.11 |
+| CC mean | -0.11 | 0.257 | +0.35 | -0.32 | -0.35 |
+| CC max | +0.06 | 0.527 | +0.46 | -0.21 | -0.07 |
+| fns CC>10 | +0.08 | 0.396 | +0.06 | +0.14 | +0.08 |
+| MI | -0.14 | 0.153 | -0.60 | +0.12 | +0.07 |
+| dup % | +0.05 | 0.589 | -0.01 | - | - |
+
+n = 111 codebases.
+
+### Static findings against functional failures, per codebase (round 1)
+
+Counts per codebase, medians. A finding is one ruff or pylint message from the maintainability rule sets; a failure is one held-out scenario that failed. They measure different things and are not interchangeable; the table only shows which one a reviewer would see more of.
+
+| spec level | n | ruff findings | pylint findings | failed held-out scenarios | codebases with 0 failures |
+|---|---|---|---|---|---|
+| brief | 111 | 10.0 | 6.0 | 6.0 | 0 |
+| reference | 3 | 11.0 | 5.0 | 0 | 3 |
+
+### After one change request (round 2 against its own round-1 parent)
+
+0 pairs. Median of (round 2 minus round 1) per codebase. Survival and change scores are in the dark factory report.
+
+| spec level | model | n | Δ SLOC | Δ ruff/KLOC | Δ pylint/KLOC | Δ CC mean | Δ CC max | Δ fns CC>10 | Δ MI | Δ dup % |
+|---|---|---|---|---|---|---|---|---|---|---|
+
+### Most frequent findings in agent code (all rounds)
+
+| ruff rule | count | pylint message | count |
+|---|---|---|---|
+| PLR2004 | 343 | raise-missing-from | 204 |
+| B904 | 204 | unused-argument | 130 |
+| C901 | 161 | too-many-locals | 105 |
+| ARG001 | 114 | too-many-branches | 97 |
+| PLR0912 | 97 | too-many-return-statements | 62 |
+| BLE001 | 83 | broad-exception-caught | 62 |
+| PLR0911 | 62 | too-few-public-methods | 34 |
+| PLW2901 | 47 | cell-var-from-loop | 28 |
+| TRY301 | 45 | too-many-statements | 21 |
+| B905 | 33 | consider-using-max-builtin | 12 |
+| B023 | 29 | too-many-arguments | 12 |
+| SIM105 | 25 | too-many-positional-arguments | 12 |
 
 ## Source: c1:c1-pilot2
 
