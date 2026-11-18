@@ -7,7 +7,7 @@ from . import paths
 def stat(data):
     return sum(sum(a) / len(a) - sum(b) / len(b) for a, b in data.values()) / len(data)
 
-def main(tag="c1-main", key="rate"):
+def main(tag="c1-main", key="rate", base="none"):
     rows = [json.loads(l) for l in open(paths.RESULTS / "c1" / "runs.jsonl")]
     rows = [r for r in rows if r.get("tag") == tag and not r.get("error")]
     def val(r):
@@ -17,15 +17,15 @@ def main(tag="c1-main", key="rate"):
         c = h["by_class"][key]
         return c["passed"] / c["total"]
     rng = random.Random(20261119)
-    print(f"| model | condition vs none | diff (points) | 95% CI | p |\n|---|---|---|---|---|")
+    print(f"| model | condition vs {base} | diff (points) | 95% CI | p |\n|---|---|---|---|---|")
     for model in sorted({r["model"] for r in rows}):
-        conds = sorted({r["condition"] for r in rows if r["model"] == model} - {"none"})
+        conds = sorted({r["condition"] for r in rows if r["model"] == model} - {base})
         for c in conds:
             data = {}
             for spec in sorted({r["spec"] for r in rows}):
                 a = [val(r) for r in rows if r["model"] == model and r["spec"] == spec and r["condition"] == c]
-                b = [val(r) for r in rows if r["model"] == model and r["spec"] == spec and r["condition"] == "none"]
-                if a and b:
+                b = [val(r) for r in rows if r["model"] == model and r["spec"] == spec and r["condition"] == base]
+                if a and b and len(data) >= 0:
                     data[spec] = (a, b)
             obs = stat(data)
             n = 10000; hits = 0

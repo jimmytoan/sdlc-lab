@@ -25,3 +25,15 @@ Each condition against 'none', same model. Diff = mean over the three specs of (
 | claude-sonnet-5-5 | kiro | +4.4 | +2.3 to +6.8 | 0.019 |
 | claude-sonnet-5-5 | plan | +3.8 | -1.4 to +8.5 | 0.204 |
 | claude-sonnet-5-5 | speckit | -5.3 | -8.5 to -1.9 | 0.030 |
+
+## Against Spec Kit without clarify (only Haiku ran clarify)
+
+| model | condition vs speckit | diff (points) | 95% CI | p |
+|---|---|---|---|---|
+| claude-haiku-5-5 | speckit-clarify | +4.0 | +1.3 to +6.8 | 0.014 |
+
+Arbitrary scenarios only:
+
+| model | condition vs speckit | diff (points) | 95% CI | p |
+|---|---|---|---|---|
+| claude-haiku-5-5 | speckit-clarify | +9.5 | +3.3 to +16.2 | 0.011 |
