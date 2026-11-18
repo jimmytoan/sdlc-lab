@@ -199,7 +199,7 @@ Overlap with the held-out suite (mutants killed by the agent suite but not the h
 
 ## Real faults: the suites against the dark factory's shipped codebases
 
-Faulty = brief-ticket builds that fail at least one held-out scenario; holdout-clean = full-spec builds that pass all of them. A suite catches a faulty build if it fails on it. A failure on a holdout-clean build is either a false alarm (the test pins behaviour the spec leaves open) or a real bug the held-out suite misses; these need reading by hand before either word is used (pilot example: one is each). The held-out suite defines 'faulty', so it catches all of them by construction and is shown only as a check; the public examples pass on every build by construction.
+Faulty = brief-ticket builds that fail at least one held-out scenario; holdout-clean = full-spec builds that pass all of them. A suite catches a faulty build if it fails on it. A failure on a holdout-clean build is either a false alarm (the test pins behaviour the spec leaves open) or a real bug the held-out suite misses; these need reading by hand before either word is used: see `results/c4-falsealarms-report.md` for the sorting. The held-out suite defines 'faulty', so it catches all of them by construction and is shown only as a check; the public examples pass on every build by construction.
 
 | spec | suite | model | faulty caught | fails on holdout-clean builds |
 |---|---|---|---|---|
